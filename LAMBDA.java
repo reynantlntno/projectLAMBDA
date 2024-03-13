@@ -85,6 +85,12 @@ public class LAMBDA {
         String MIDDLE_NAME = scanner.next();
         System.out.print("Enter ADDRESS: ");
         String ADDRESS = scanner.next();
+        System.out.print("Enter EMAIL ADDRESS: ");
+        String EMAIL_ADDRESS = scanner.next();
+        System.out.print("Enter CONTACT NUMBER: ");
+        String CONTACT_NUMBER = scanner.next();
+        System.out.print("Enter Start Year: 20");
+        int YEAR = scanner.nextInt();
         int AGE;
         do {
             System.out.print("Enter AGE (>= " + MIN_INSTRUCTOR_AGE + "): ");
@@ -94,9 +100,10 @@ public class LAMBDA {
             }
             AGE = scanner.nextInt();
         } while (AGE < MIN_INSTRUCTOR_AGE);
+        
 
         String ID = GENERATE_INS_ID(AGE);
-        INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, AGE);
+        INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
         instructors.add(INSTRUCTOR);
         System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
     }
@@ -115,6 +122,12 @@ public class LAMBDA {
         String MIDDLE_NAME = scanner.next();
         System.out.print("Enter ADDRESS: ");
         String ADDRESS = scanner.next();
+        System.out.print("Enter EMAIL ADDRESS: ");
+        String EMAIL_ADDRESS = scanner.next();
+        System.out.print("Enter CONTACT NUMBER: ");
+        String CONTACT_NUMBER = scanner.next();
+        System.out.print("Enter Start Year: 20");
+        int YEAR = scanner.nextInt();
         int AGE;
         do {
             System.out.print("Enter AGE (>= " + MIN_STUDENT_AGE + "): ");
@@ -126,7 +139,7 @@ public class LAMBDA {
         } while (AGE < MIN_STUDENT_AGE);
 
         String ID = GENERATE_ST_ID(AGE);
-        STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, AGE);
+        STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
         students.add(STUDENT);
         System.out.println("STUDENT added successfully. Details: \n" + STUDENT);
     }
@@ -233,7 +246,7 @@ public class LAMBDA {
 
     private static INSTRUCTOR FIND_INS_ID(String ID) {
         for (INSTRUCTOR INSTRUCTOR : instructors) {
-            if (INSTRUCTOR.getId().equals(ID)) {
+            if (INSTRUCTOR.GET_ID().equals(ID)) {
                 return INSTRUCTOR;
             }
         }
@@ -242,7 +255,7 @@ public class LAMBDA {
 
     private static STUDENT FIND_ST_ID(String ID) {
         for (STUDENT STUDENT : students) {
-            if (STUDENT.getId().equals(ID)) {
+            if (STUDENT.GET_ID().equals(ID)) {
                 return STUDENT;
             }
         }
