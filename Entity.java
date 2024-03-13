@@ -25,7 +25,6 @@ class Entity {
 
     }
 
-    // Getters and setters
     public String GET_ID() {
         return ID;
     }
@@ -98,11 +97,8 @@ class Entity {
         this.AGE = AGE;
     }
 
-
-
-    // Method overriding for polymorphism
     @Override
     public String toString() {
-        return "ID: " + ID + "\nName: " + FIRST_NAME + " " + LAST_NAME + "\nAddress: " + ADDRESS + "\nEmail Address: " + EMAIL_ADDRESS + "\nContact Number: " + CONTACT_NUMBER + "\nYEAR START: 20" + YEAR + "\nAge: " + AGE;
+        return "ID: " + ID + "\nName: " + FIRST_NAME + " " + LAST_NAME + "\nAddress: " + ADDRESS + "\nEmail Address: " + EMAIL_ADDRESS + "\nContact Number: " + CONTACT_NUMBER + "\nYear Start: 20" + YEAR + "\nAge: " + AGE;
     }
 }

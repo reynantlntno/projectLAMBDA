@@ -18,7 +18,6 @@ class INSTRUCTOR extends Entity {
         return SUBJECTS;
     }
 
-    // Method overriding for polymorphism
     @Override
     public String toString() {
         return "INSTRUCTOR: \n" + super.toString();

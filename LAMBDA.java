@@ -4,14 +4,15 @@ import java.util.*;
 
 public class LAMBDA {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<INSTRUCTOR> instructors = new ArrayList<>();
-    private static List<STUDENT> students = new ArrayList<>();
+    private static List<INSTRUCTOR> INSTRUCTORS = new ArrayList<>();
+    private static List<STUDENT> STUDENTS = new ArrayList<>();
     private static List<SUBJECT> SUBJECTS = new ArrayList<>();
     private static final int MIN_INSTRUCTOR_AGE = 24;
     private static final int MIN_STUDENT_AGE = 17;
 
     public static void main(String[] args) {
         SHOW_SPL();
+        PROMPT_LOGIN();
         while (true) {
             SHOW_MENU();
             int choice = GET_CHOICE();
@@ -47,15 +48,23 @@ public class LAMBDA {
     }
 
     private static void SHOW_SPL() {
-        String splashText = "Welcome to University Management Profiling System!";
-        int padding = (80 - splashText.length()) / 2;
-        System.out.println("\n" + "=".repeat(padding) + splashText + "=".repeat(padding));
+        double LAMBDA_VERS = 1.0;
+        String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
+        int padding = (60 - SPLASH_TXT.length()) / 2;
+        System.out.println("\n" + "=".repeat(padding) + SPLASH_TXT + "=".repeat(padding));
+    }
+
+    private static void PROMPT_LOGIN() {
+        System.out.print("Please enter your username for record purposes: ");
+        String USERNAME = scanner.next();
+        System.out.print("Hello " + USERNAME + "!");
+
     }
 
     private static void SHOW_MENU() {
         System.out.println("\n" + "=".repeat(60));
-        System.out.println("No.    | Option");
-        System.out.println("------+------------------------------------------------------");
+        System.out.println("No    | Option");
+        System.out.println("------+-----------------------------------------------------");
         System.out.println(" 1    | Add INSTRUCTOR");
         System.out.println(" 2    | Add STUDENT");
         System.out.println(" 3    | Add SUBJECT");
@@ -77,146 +86,155 @@ public class LAMBDA {
     }
 
     private static void ADD_INSTRUCTOR() {
+        System.out.println("-".repeat(60));
+        System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("-".repeat(60));
         System.out.print("Enter last name: ");
         String LAST_NAME = scanner.next();
         System.out.print("Enter first name: ");
         String FIRST_NAME = scanner.next();
         System.out.print("Enter middle name (optional): ");
         String MIDDLE_NAME = scanner.next();
-        System.out.print("Enter ADDRESS: ");
+        System.out.print("Enter Address ");
         String ADDRESS = scanner.next();
-        System.out.print("Enter EMAIL ADDRESS: ");
+        System.out.print("Enter Email Address ");
         String EMAIL_ADDRESS = scanner.next();
-        System.out.print("Enter CONTACT NUMBER: ");
+        System.out.print("Enter Contact Number ");
         String CONTACT_NUMBER = scanner.next();
         System.out.print("Enter Start Year: 20");
         int YEAR = scanner.nextInt();
         int AGE;
         do {
-            System.out.print("Enter AGE (>= " + MIN_INSTRUCTOR_AGE + "): ");
+            System.out.print("Enter Age (>= " + MIN_INSTRUCTOR_AGE + "): ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Invalid AGE! Please enter a valid AGE.");
+                System.out.println("Invalid Age! Please enter a valid Age.");
                 scanner.next();
             }
             AGE = scanner.nextInt();
         } while (AGE < MIN_INSTRUCTOR_AGE);
         
 
-        String ID = GENERATE_INS_ID(AGE);
+        String ID = GENERATE_INS_ID(YEAR);
         INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
-        instructors.add(INSTRUCTOR);
+        INSTRUCTORS.add(INSTRUCTOR);
         System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
     }
 
-    private static String GENERATE_INS_ID(int AGE) {
+    private static String GENERATE_INS_ID(int YEAR) {
         Random rand = new Random();
-        return "INS" + AGE + "-" + (rand.nextInt(9000) + 1000);
+        return "INS" + YEAR + "-" + (rand.nextInt(9000) + 1000);
     }
 
     private static void ADD_STUDENT() {
+        System.out.println("-".repeat(60));
+        System.out.println("STUDENT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("-".repeat(60));
         System.out.print("Enter last name: ");
         String LAST_NAME = scanner.next();
         System.out.print("Enter first name: ");
         String FIRST_NAME = scanner.next();
         System.out.print("Enter middle name (optional): ");
         String MIDDLE_NAME = scanner.next();
-        System.out.print("Enter ADDRESS: ");
+        System.out.print("Enter Address: ");
         String ADDRESS = scanner.next();
-        System.out.print("Enter EMAIL ADDRESS: ");
+        System.out.print("Enter Email Address ");
         String EMAIL_ADDRESS = scanner.next();
-        System.out.print("Enter CONTACT NUMBER: ");
+        System.out.print("Enter Contact Number ");
         String CONTACT_NUMBER = scanner.next();
         System.out.print("Enter Start Year: 20");
         int YEAR = scanner.nextInt();
         int AGE;
         do {
-            System.out.print("Enter AGE (>= " + MIN_STUDENT_AGE + "): ");
+            System.out.print("Enter Age (>= " + MIN_STUDENT_AGE + "): ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Invalid AGE! Please enter a valid AGE.");
+                System.out.println("Invalid Age! Please enter a valid Age.");
                 scanner.next();
             }
             AGE = scanner.nextInt();
         } while (AGE < MIN_STUDENT_AGE);
 
-        String ID = GENERATE_ST_ID(AGE);
+        String ID = GENERATE_ST_ID(YEAR);
         STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
-        students.add(STUDENT);
-        System.out.println("STUDENT added successfully. Details: \n" + STUDENT);
+        STUDENTS.add(STUDENT);
+        System.out.println("Student added successfully. Details: \n" + STUDENT);
     }
 
-    private static String GENERATE_ST_ID(int AGE) {
+    private static String GENERATE_ST_ID(int YEAR) {
         Random rand = new Random();
-        return "ST" + AGE + "-" + (rand.nextInt(9000) + 1000);
+        return "ST" + YEAR + "-" + (rand.nextInt(9000) + 1000);
     }
 
     private static void ADD_SUBJECT() {
-        System.out.print("Enter SUBJECT TITLE: ");
+        System.out.println("-".repeat(60));
+        System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("-".repeat(60));
+        System.out.print("Enter Subject Title: ");
         String TITLE = scanner.next();
-        System.out.print("Enter SUBJECT DESC: ");
+        System.out.print("Enter Subject Description: ");
         String DESC = scanner.next();
 
         SUBJECT SUBJECT = new SUBJECT(TITLE, DESC);
         SUBJECTS.add(SUBJECT);
-        System.out.println("SUBJECT added successfully with Details: \n" + SUBJECT);
+        System.out.println("Subject added successfully with Details: \n" + SUBJECT);
     }
 
     private static void ASSIGN_SUB_TO_INS() {
-        System.out.print("Enter INSTRUCTOR ID: ");
+        System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.next();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
         if (INSTRUCTOR == null) {
-            System.out.println("Invalid INSTRUCTOR ID.");
+            System.out.println("Invalid Instructor ID.");
             return;
         }
 
-        System.out.print("Enter SUBJECT CODE: ");
+        System.out.print("Enter Subject Code: ");
         String SUBJECT_ID = scanner.next();
         SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
         if (SUBJECT == null) {
-            System.out.println("Invalid SUBJECT CODE.");
+            System.out.println("Invalid Subject Code.");
             return;
         }
 
         INSTRUCTOR.ADD_SUBJECT(SUBJECT);
-        System.out.println("SUBJECT assigned to INSTRUCTOR successfully.");
+        System.out.println("Subject assigned to Instructor successfully.");
     }
 
     private static void ADD_SUB_TO_ST() {
-        System.out.print("Enter STUDENT ID: ");
+        System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.next();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
         if (STUDENT == null) {
-            System.out.println("Invalid STUDENT ID.");
+            System.out.println("Invalid Student ID.");
             return;
         }
 
-        System.out.print("Enter SUBJECT CODE: ");
+        System.out.print("Enter Subject Code: ");
         String SUBJECT_ID = scanner.next();
         SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
         if (SUBJECT == null) {
-            System.out.println("Invalid SUBJECT CODE.");
+            System.out.println("Invalid Subject Code.");
             return;
         }
 
         STUDENT.ADD_SUBJECT(SUBJECT);
-        System.out.println("SUBJECT added to STUDENT successfully.");
+        System.out.println("Subject added to Student successfully.");
     }
 
     private static void SHOW_ST_INFO() {
-        System.out.print("Enter STUDENT ID: ");
+        System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.next();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
         if (STUDENT == null) {
-            System.out.println("Invalid STUDENT ID.");
+            System.out.println("Invalid Student ID.");
             return;
         }
 
         System.out.println(STUDENT);
         List<SUBJECT> studentSubjects = STUDENT.GET_SUBS();
         if (studentSubjects.isEmpty()) {
-            System.out.println("No SUBJECTS assigned to this STUDENT.");
+            System.out.println("No Subjects assigned to this Student.");
         } else {
-            System.out.println("SUBJECTS Assigned:");
+            System.out.println("Subjects Assigned:");
             for (SUBJECT SUBJECT : studentSubjects) {
                 System.out.println("- " + SUBJECT);
             }
@@ -224,28 +242,28 @@ public class LAMBDA {
     }
 
     private static void SHOW_INS_INFO() {
-        System.out.print("Enter INSTRUCTOR ID: ");
+        System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.next();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
         if (INSTRUCTOR == null) {
-            System.out.println("Invalid INSTRUCTOR ID.");
+            System.out.println("Invalid Instructor ID.");
             return;
         }
 
         System.out.println(INSTRUCTOR);
-        List<SUBJECT> instructorSubjects = INSTRUCTOR.GET_SUBS();
-        if (instructorSubjects.isEmpty()) {
-            System.out.println("No SUBJECTS assigned to this INSTRUCTOR.");
+        List<SUBJECT> INSTRUCTOR_SUBS = INSTRUCTOR.GET_SUBS();
+        if (INSTRUCTOR_SUBS.isEmpty()) {
+            System.out.println("No Subjects assigned to this Instructor.");
         } else {
             System.out.println("SUBJECTS Handled:");
-            for (SUBJECT SUBJECT : instructorSubjects) {
+            for (SUBJECT SUBJECT : INSTRUCTOR_SUBS) {
                 System.out.println("- " + SUBJECT);
             }
         }
     }
 
     private static INSTRUCTOR FIND_INS_ID(String ID) {
-        for (INSTRUCTOR INSTRUCTOR : instructors) {
+        for (INSTRUCTOR INSTRUCTOR : INSTRUCTORS) {
             if (INSTRUCTOR.GET_ID().equals(ID)) {
                 return INSTRUCTOR;
             }
@@ -254,7 +272,7 @@ public class LAMBDA {
     }
 
     private static STUDENT FIND_ST_ID(String ID) {
-        for (STUDENT STUDENT : students) {
+        for (STUDENT STUDENT : STUDENTS) {
             if (STUDENT.GET_ID().equals(ID)) {
                 return STUDENT;
             }

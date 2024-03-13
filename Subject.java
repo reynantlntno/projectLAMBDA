@@ -31,7 +31,6 @@ class SUBJECT {
         return DESC;
     }
 
-    // Method overriding for polymorphism
     @Override
     public String toString() {
         return "SUBJECT: \n" + TITLE + ", CODE: " + CODE + ", DESC: " + DESC;

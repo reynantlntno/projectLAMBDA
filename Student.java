@@ -18,7 +18,6 @@ class STUDENT extends Entity {
         return SUBJECTS;
     }
 
-    // Method overriding for polymorphism
     @Override
     public String toString() {
         return "STUDENT: \n" + super.toString();
