@@ -39,6 +39,15 @@ public class LAMBDA {
                     SHOW_INS_INFO();
                     break;
                 case 8:
+                    REM_STUDENT();
+                    break;
+                case 9:
+                    System.out.println("hindi pa ready");
+                    break;
+                case 10:
+                    System.out.println("hindi pa ready");
+                    break;
+                case 11:
                     System.out.println("Exiting LAMBDA...");
                     return;
                 default:
@@ -72,7 +81,10 @@ public class LAMBDA {
         System.out.println(" 5    | Add SUBJECT to STUDENT");
         System.out.println(" 6    | Display STUDENT's Information and SUBJECT Details");
         System.out.println(" 7    | Display INSTRUCTOR's Details and SUBJECTS Handled");
-        System.out.println(" 8    | Exit");
+        System.out.println(" 8    | Unenroll a STUDENT");
+        System.out.println(" 9    | Remove a INSTRUCTOR (Not yet ready hahaha)");
+        System.out.println(" 10   | Remove a SUBJECT (Not yet ready hahaha)");
+        System.out.println(" 11   | Exit LAMBDA");  
         System.out.println("=".repeat(60));
         System.out.print("Enter your choice: ");
     }
@@ -288,4 +300,17 @@ public class LAMBDA {
         }
         return null;
     }
+
+    private static void REM_STUDENT() {
+        System.out.print("Enter Student ID to unenroll: ");
+        String STUDENT_ID = scanner.nextLine();
+        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
+        if (STUDENT == null) {
+            System.out.println("Student with ID " + STUDENT_ID + " not found.");
+            return;
+        }
+        STUDENTS.remove(STUDENT);
+        System.out.println("Student " + STUDENT_ID + "unenrolled.");
+    }
+
 }
