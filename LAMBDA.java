@@ -1,8 +1,8 @@
-// UMPS.java
+// LAMBDA.java
 
 import java.util.*;
 
-public class UMPS {
+public class LAMBDA {
     private static Scanner scanner = new Scanner(System.in);
     private static List<INSTRUCTOR> instructors = new ArrayList<>();
     private static List<STUDENT> students = new ArrayList<>();
