@@ -39,7 +39,7 @@ public class LAMBDA {
                     SHOW_INS_INFO();
                     break;
                 case 8:
-                    System.out.println("Exiting program...");
+                    System.out.println("Exiting LAMBDA...");
                     return;
                 default:
                     System.out.println("Invalid choice, please try again.");
@@ -95,11 +95,11 @@ public class LAMBDA {
         String FIRST_NAME = scanner.next();
         System.out.print("Enter middle name (optional): ");
         String MIDDLE_NAME = scanner.next();
-        System.out.print("Enter Address ");
+        System.out.print("Enter Address: ");
         String ADDRESS = scanner.next();
-        System.out.print("Enter Email Address ");
+        System.out.print("Enter Email Address: ");
         String EMAIL_ADDRESS = scanner.next();
-        System.out.print("Enter Contact Number ");
+        System.out.print("Enter Contact Number: ");
         String CONTACT_NUMBER = scanner.next();
         System.out.print("Enter Start Year: 20");
         int YEAR = scanner.nextInt();
@@ -137,9 +137,9 @@ public class LAMBDA {
         String MIDDLE_NAME = scanner.next();
         System.out.print("Enter Address: ");
         String ADDRESS = scanner.next();
-        System.out.print("Enter Email Address ");
+        System.out.print("Enter Email Address: ");
         String EMAIL_ADDRESS = scanner.next();
-        System.out.print("Enter Contact Number ");
+        System.out.print("Enter Contact Number: ");
         String CONTACT_NUMBER = scanner.next();
         System.out.print("Enter Start Year: 20");
         int YEAR = scanner.nextInt();
