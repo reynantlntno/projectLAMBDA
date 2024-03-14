@@ -1,7 +1,7 @@
 // LAMBDA.java
 
 // put notes here
-// 
+// ** scanner.next should be added
 
 import java.util.*;
 
@@ -51,11 +51,11 @@ public class LAMBDA {
                 case "10":
                     REM_SUBJECT();
                     break;
-                case "CLEAR","clear","11":
+                case "CLEAR":
                     CLEAR_SCREEN();
                     SHOW_SPL();
                     break;
-                case "EXIT","exit","12":
+                case "EXIT":
                     CLEAR_SCREEN();
                     System.out.println("Exiting LAMBDA...");
                     return;
@@ -121,15 +121,16 @@ public class LAMBDA {
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");  
         System.out.println("=".repeat(62));
+        scanner.nextLine();
         System.out.print("Enter your choice: ");
     }
 
     private static String GET_CHOICE() {
         while (!scanner.hasNext()) {
             System.out.println("Invalid input! Please enter a number.");
-            scanner.nextLine();
+            scanner.next();
         }
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     private static void ADD_INSTRUCTOR() {
@@ -138,7 +139,7 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
 
         try {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+        scanner.nextLine();
         System.out.print("Enter last name: ");
         String LAST_NAME = scanner.nextLine();
         System.out.print("Enter first name: ");
@@ -187,7 +188,7 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
     
         try {
-            String THIS_IS_A_WORKAROUND = scanner.nextLine();
+            scanner.nextLine();
             System.out.print("Enter last name: ");
             String LAST_NAME = scanner.nextLine();
             System.out.print("Enter first name: ");
@@ -232,7 +233,7 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
         System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
         System.out.println("-".repeat(62));
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Subject Title: ");
         String TITLE = scanner.nextLine();
         System.out.print("Enter Subject Description: ");
@@ -243,7 +244,7 @@ public class LAMBDA {
     }
 
     private static void ASSIGN_SUB_TO_INS() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
@@ -266,7 +267,7 @@ public class LAMBDA {
     }
 
     private static void ADD_SUB_TO_ST() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -288,7 +289,7 @@ public class LAMBDA {
     }
 
     private static void SHOW_ST_INFO() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -310,7 +311,7 @@ public class LAMBDA {
     }
 
     private static void SHOW_INS_INFO() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
@@ -359,7 +360,7 @@ public class LAMBDA {
     }
 
     private static void REM_STUDENT() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("Enter Student ID to unenroll: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -372,7 +373,7 @@ public class LAMBDA {
     }
 
     private static void REM_INSTRUCTOR() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("\nEnter Instructor ID to remove: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
@@ -385,7 +386,7 @@ public class LAMBDA {
             System.out.println("Student " + INSTRUCTOR_ID + " unenrolled.");
     }
     private static void REM_SUBJECT() {
-        String THIS_IS_A_WORKAROUND = scanner.nextLine();
+ 
         System.out.print("\nEnter Subject Code to remove: ");
         String SUBJECT_ID = scanner.nextLine();
         SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
