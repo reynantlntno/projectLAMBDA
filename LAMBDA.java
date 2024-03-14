@@ -54,6 +54,9 @@ public class LAMBDA {
                 case "11":
                     EDIT_INSTRUCTOR_DETAILS();
                     break;
+                case "12":
+                    EDIT_STUDENT_DETAILS();
+                    break;
                 case "CLEAR":
                     CLEAR_SCREEN();
                     SHOW_SPL();
@@ -130,6 +133,7 @@ public class LAMBDA {
         System.out.println(" 9     | Remove a INSTRUCTOR");
         System.out.println(" 10    | Remove a SUBJECT");
         System.out.println(" 11    | Edit INSTRUCTOR Details");
+        System.out.println(" 12    | Edit STUDENT Details");
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");
         System.out.println("=".repeat(62));
@@ -440,4 +444,38 @@ public class LAMBDA {
     
         System.out.println("Instructor details updated successfully.");
     }
+
+    private static void EDIT_STUDENT_DETAILS() {
+        scanner.nextLine();
+        System.out.print("Enter Student ID to edit details: ");
+        String STUDENT_ID = scanner.nextLine();
+        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
+        if (STUDENT == null) {
+            System.out.println("Invalid Student ID.");
+            return;
+        }
+    
+        System.out.println("Enter new details for the Student:");
+        System.out.print("Last Name: ");
+        String LAST_NAME = scanner.nextLine();
+        STUDENT.SET_LASTNAME(LAST_NAME);
+        System.out.print("First Name: ");
+        String FIRST_NAME = scanner.nextLine();
+        STUDENT.SET_FIRSTNAME(FIRST_NAME);
+        System.out.print("Middle Name (optional): ");
+        String MIDDLE_NAME = scanner.nextLine();
+        STUDENT.SET_MIDDLENAME(MIDDLE_NAME);
+        System.out.print("Address: ");
+        String ADDRESS = scanner.nextLine();
+        STUDENT.SET_ADDRESS(ADDRESS);
+        System.out.print("Email Address: ");
+        String EMAIL_ADDRESS = scanner.nextLine();
+        STUDENT.SET_EMAILADD(EMAIL_ADDRESS);
+        System.out.print("Contact Number: ");
+        String CONTACT_NUMBER = scanner.nextLine();
+        STUDENT.SET_CONTACTNUM(CONTACT_NUMBER);
+    
+        System.out.println("Student details updated successfully.");
+    }
 }    
+
