@@ -1,5 +1,8 @@
 // LAMBDA.java
 
+// put notes here
+// 
+
 import java.util.*;
 
 public class LAMBDA {
@@ -57,6 +60,11 @@ public class LAMBDA {
         }
     }
 
+    private static void CLEAR_SCREEN() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
+
     private static void SHOW_SPL() {
         double LAMBDA_VERS = 1.0;
         String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
@@ -67,23 +75,28 @@ public class LAMBDA {
     private static void PROMPT_LOGIN() {
         System.out.print("Please enter your username for record purposes: ");
         String USERNAME = scanner.next();
-        System.out.print("Hello " + USERNAME + "!");
+        System.out.print("Hello " + USERNAME + "! Please answer the question below: \n");
 
     }
 
     private static void LAMBDA_CAPTCHA() {
-        System.out.print("\n10 * 10 = ");
-        int PRODUCT = scanner.nextInt();
-        if (PRODUCT == 100) {
-            System.out.print("Correct!");
-            return;
-
-        }
-        else {
-            System.out.print("Wrong!");
+        try {
+            System.out.print("\n10 * 10 = ");
+            int PRODUCT = scanner.nextInt();
+            if (PRODUCT == 100) {
+                System.out.print("Correct Answer! \n");
+                CLEAR_SCREEN();
+                SHOW_SPL();
+                return;
+            } else {
+                System.out.print("Wrong Answer! \n");
+                LAMBDA_CAPTCHA();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Try again.");
+            scanner.nextLine(); 
             LAMBDA_CAPTCHA();
         }
-
     }
 
     private static void SHOW_MENU() {
@@ -117,6 +130,8 @@ public class LAMBDA {
         System.out.println("-".repeat(60));
         System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
         System.out.println("-".repeat(60));
+
+        try {
         System.out.print("Enter last name: ");
         String LAST_NAME = scanner.next();
         System.out.print("Enter first name: ");
@@ -128,7 +143,7 @@ public class LAMBDA {
         System.out.print("Enter Email Address: ");
         String EMAIL_ADDRESS = scanner.next();
         System.out.print("Enter Contact Number: ");
-        String CONTACT_NUMBER = scanner.next();
+        String CONTACT_NUMBER = scanner.next();  
         System.out.print("Enter Start Year: 20");
         int YEAR = scanner.nextInt();
         int AGE;
@@ -146,6 +161,12 @@ public class LAMBDA {
         INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
         INSTRUCTORS.add(INSTRUCTOR);
         System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
+
+        } catch (InputMismatchException e) {
+        System.out.println("Invalid input! Try again.");
+        scanner.next(); 
+        ADD_INSTRUCTOR(); 
+        }
     }
 
     private static String GENERATE_INS_ID(int YEAR) {
@@ -157,34 +178,41 @@ public class LAMBDA {
         System.out.println("-".repeat(60));
         System.out.println("STUDENT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
         System.out.println("-".repeat(60));
-        System.out.print("Enter last name: ");
-        String LAST_NAME = scanner.next();
-        System.out.print("Enter first name: ");
-        String FIRST_NAME = scanner.next();
-        System.out.print("Enter middle name (optional): ");
-        String MIDDLE_NAME = scanner.next();
-        System.out.print("Enter Address: ");
-        String ADDRESS = scanner.next();
-        System.out.print("Enter Email Address: ");
-        String EMAIL_ADDRESS = scanner.next();
-        System.out.print("Enter Contact Number: ");
-        String CONTACT_NUMBER = scanner.next();
-        System.out.print("Enter Start Year: 20");
-        int YEAR = scanner.nextInt();
-        int AGE;
-        do {
-            System.out.print("Enter Age (>= " + MIN_STUDENT_AGE + "): ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Invalid Age! Please enter a valid Age.");
-                scanner.next();
-            }
-            AGE = scanner.nextInt();
-        } while (AGE < MIN_STUDENT_AGE);
-
-        String ID = GENERATE_ST_ID(YEAR);
-        STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
-        STUDENTS.add(STUDENT);
-        System.out.println("Student added successfully. Details: \n" + STUDENT);
+    
+        try {
+            System.out.print("Enter last name: ");
+            String LAST_NAME = scanner.next();
+            System.out.print("Enter first name: ");
+            String FIRST_NAME = scanner.next();
+            System.out.print("Enter middle name (optional): ");
+            String MIDDLE_NAME = scanner.next();
+            System.out.print("Enter Address: ");
+            String ADDRESS = scanner.next();
+            System.out.print("Enter Email Address: ");
+            String EMAIL_ADDRESS = scanner.next();
+            System.out.print("Enter Contact Number: ");
+            String CONTACT_NUMBER = scanner.next();
+            System.out.print("Enter Start Year: 20");
+            int YEAR = scanner.nextInt();
+            int AGE;
+            do {
+                System.out.print("Enter Age (>= " + MIN_STUDENT_AGE + "): ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Invalid Age! Please enter a valid Age.");
+                    scanner.next();
+                }
+                AGE = scanner.nextInt();
+            } while (AGE < MIN_STUDENT_AGE);
+    
+            String ID = GENERATE_ST_ID(YEAR);
+            STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
+            STUDENTS.add(STUDENT);
+            System.out.println("Student added successfully. Details: \n" + STUDENT);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Try again.");
+            scanner.next(); 
+            ADD_STUDENT(); 
+        }
     }
 
     private static String GENERATE_ST_ID(int YEAR) {
@@ -200,7 +228,6 @@ public class LAMBDA {
         String TITLE = scanner.next();
         System.out.print("Enter Subject Description: ");
         String DESC = scanner.next();
-
         SUBJECT SUBJECT = new SUBJECT(TITLE, DESC);
         SUBJECTS.add(SUBJECT);
         System.out.println("Subject added successfully with Details: \n" + SUBJECT);
@@ -225,6 +252,7 @@ public class LAMBDA {
 
         INSTRUCTOR.ADD_SUBJECT(SUBJECT);
         System.out.println("Subject assigned to Instructor successfully.");
+        
     }
 
     private static void ADD_SUB_TO_ST() {
