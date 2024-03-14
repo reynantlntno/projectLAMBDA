@@ -163,40 +163,72 @@ public class LAMBDA {
         try {
             scanner.nextLine();
             System.out.print("Enter last name: ");
-            String LAST_NAME = scanner.nextLine();
+            String lastName = scanner.nextLine().trim();
+            if (lastName.isEmpty()) {
+                throw new IllegalArgumentException("Last name cannot be empty.");
+            }
+            if (!isValidName(lastName)) {
+                throw new IllegalArgumentException("Last name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter first name: ");
-            String FIRST_NAME = scanner.nextLine();
+            String firstName = scanner.nextLine().trim();
+            if (firstName.isEmpty()) {
+                throw new IllegalArgumentException("First name cannot be empty.");
+            }
+            if (!isValidName(firstName)) {
+                throw new IllegalArgumentException("First name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter middle name (optional): ");
-            String MIDDLE_NAME = scanner.nextLine();
+            String middleName = scanner.nextLine().trim();
+            if (!isValidName(middleName)) {
+                throw new IllegalArgumentException("Middle name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter Address: ");
-            String ADDRESS = scanner.nextLine();
+            String address = scanner.nextLine().trim();
+
             System.out.print("Enter Email Address: ");
-            String EMAIL_ADDRESS = scanner.nextLine();
+            String emailAddress = scanner.nextLine().trim();
+
             System.out.print("Enter Contact Number: ");
-            String CONTACT_NUMBER = scanner.nextLine();
+            String contactNumber = scanner.nextLine().trim();
+
             System.out.print("Enter Start Year: 20");
-            int YEAR = scanner.nextInt();
-            int AGE;
+            int year = scanner.nextInt();
+            int age;
             do {
                 System.out.print("Enter Age (>= " + MIN_INSTRUCTOR_AGE + "): ");
                 while (!scanner.hasNextInt()) {
                     System.out.println("Invalid Age! Please enter a valid Age.");
                     scanner.nextLine();
                 }
-                AGE = scanner.nextInt();
-            } while (AGE < MIN_INSTRUCTOR_AGE);
+                age = scanner.nextInt();
+            } while (age < MIN_INSTRUCTOR_AGE);
 
-            String ID = GENERATE_INS_ID(YEAR);
-            INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS,
-                    CONTACT_NUMBER, AGE, YEAR);
-            INSTRUCTORS.add(INSTRUCTOR);
-            System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
+            String ID = GENERATE_INS_ID(year);
+            INSTRUCTOR instructor = new INSTRUCTOR(ID, lastName, firstName, middleName, address, emailAddress,
+                    contactNumber, age, year);
+            INSTRUCTORS.add(instructor);
+            System.out.println("INSTRUCTOR added successfully. Details: \n" + instructor);
 
         } catch (InputMismatchException e) {
-            System.out.println("Invalid input! Try again.");
+            System.out.println("Invalid input! Please enter valid data.");
             scanner.nextLine();
             ADD_INSTRUCTOR();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    private static boolean isValidName(String name) {
+        for (char c : name.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private static String GENERATE_INS_ID(int YEAR) {
@@ -212,34 +244,58 @@ public class LAMBDA {
         try {
             scanner.nextLine();
             System.out.print("Enter last name: ");
-            String LAST_NAME = scanner.nextLine();
+            String lastName = scanner.nextLine().trim();
+            if (lastName.isEmpty()) {
+                throw new IllegalArgumentException("Last name cannot be empty.");
+            }
+            if (!isValidName(lastName)) {
+                throw new IllegalArgumentException("Last name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter first name: ");
-            String FIRST_NAME = scanner.nextLine();
+            String firstName = scanner.nextLine().trim();
+            if (firstName.isEmpty()) {
+                throw new IllegalArgumentException("First name cannot be empty.");
+            }
+            if (!isValidName(firstName)) {
+                throw new IllegalArgumentException("First name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter middle name (optional): ");
-            String MIDDLE_NAME = scanner.nextLine();
+            String middleName = scanner.nextLine().trim();
+            if (!isValidName(middleName)) {
+                throw new IllegalArgumentException("Middle name cannot contain numeric characters.");
+            }
+
             System.out.print("Enter Address: ");
-            String ADDRESS = scanner.nextLine();
+            String address = scanner.nextLine().trim();
+
             System.out.print("Enter Email Address: ");
-            String EMAIL_ADDRESS = scanner.nextLine();
+            String emailAddress = scanner.nextLine().trim();
+
             System.out.print("Enter Contact Number: ");
-            String CONTACT_NUMBER = scanner.nextLine();
+            String contactNumber = scanner.nextLine().trim();
+
             System.out.print("Enter Start Year: 20");
-            int YEAR = scanner.nextInt();
-            int AGE;
+            int year = scanner.nextInt();
+
+            int age;
             do {
                 System.out.print("Enter Age (>= " + MIN_STUDENT_AGE + "): ");
                 while (!scanner.hasNextInt()) {
                     System.out.println("Invalid Age! Please enter a valid Age.");
                     scanner.nextLine();
                 }
-                AGE = scanner.nextInt();
-            } while (AGE < MIN_STUDENT_AGE);
+                age = scanner.nextInt();
+            } while (age < MIN_STUDENT_AGE);
 
-            String ID = GENERATE_ST_ID(YEAR);
-            STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS,
-                    CONTACT_NUMBER, AGE, YEAR);
-            STUDENTS.add(STUDENT);
-            System.out.println("Student added successfully. Details: \n" + STUDENT);
+            String ID = GENERATE_ST_ID(year);
+            STUDENT student = new STUDENT(ID, lastName, firstName, middleName, address, emailAddress,
+                    contactNumber, age, year);
+            STUDENTS.add(student);
+            System.out.println("Student added successfully. Details: \n" + student);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Try again.");
             scanner.nextLine();
