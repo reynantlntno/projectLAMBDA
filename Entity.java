@@ -1,4 +1,5 @@
 // Entity.java
+// put notes here
 
 class Entity {
     private String ID;
