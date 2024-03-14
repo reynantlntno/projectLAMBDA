@@ -1,7 +1,7 @@
 // LAMBDA.java
 
 // put notes here
-// ** scanner.next should be added
+// 
 
 import java.util.*;
 
@@ -149,9 +149,9 @@ public class LAMBDA {
     }
 
     private static void ADD_INSTRUCTOR() {
-        System.out.println("-".repeat(62));
+        System.out.print("\n==============================================================");
         System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.println("-".repeat(62));
+        System.out.print("\n==============================================================");
 
         try {
             scanner.nextLine();
@@ -302,9 +302,9 @@ public class LAMBDA {
     }
 
     private static void ADD_SUBJECT() {
-        System.out.println("-".repeat(62));
+        System.out.print("\n==============================================================");
         System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.println("-".repeat(62));
+        System.out.print("\n==============================================================");
         scanner.nextLine();
         System.out.print("Enter Subject Title: ");
         String TITLE = scanner.nextLine();
