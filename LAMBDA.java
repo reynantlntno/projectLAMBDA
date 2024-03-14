@@ -77,7 +77,7 @@ public class LAMBDA {
         double LAMBDA_VERS = 1.0;
         String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
         int padding = (62 - SPLASH_TXT.length()) / 2;
-        System.out.println("\n" + repeatChar('=', padding) + splashText + repeatChar('=', padding));
+        System.out.println("\n" + "=".repeat(padding) + SPLASH_TXT + "=".repeat(padding));
     }
 
     private static void PROMPT_LOGIN() {
@@ -115,7 +115,8 @@ public class LAMBDA {
     }
     
     private static void SHOW_MENU() {
-        System.out.println("\n" + repeatChar('=', 60));
+        
+        System.out.println("\n" + "=".repeat(62));
         System.out.println("No     | Option");
         System.out.println("-------+------------------------------------------------------");
         System.out.println(" 1     | Add INSTRUCTOR");
@@ -131,17 +132,8 @@ public class LAMBDA {
         System.out.println(" 11    | Edit INSTRUCTOR Details");
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");
-        System.out.println(repeatChar('=', 60));
-        scanner.nextLine();
+        System.out.println("=".repeat(62));
         System.out.print("Enter your choice: ");
-    }
-
-    private static String repeatChar(char c, int count) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            sb.append(c);
-        }
-        return sb.toString();
     }
 
     private static String GET_CHOICE() {
@@ -153,9 +145,9 @@ public class LAMBDA {
     }
 
     private static void ADD_INSTRUCTOR() {
-        System.out.println(repeatChar('=', 62));
+        System.out.println("-".repeat(62));
         System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.println(repeatChar('=', 62));
+        System.out.println("-".repeat(62));
 
         try {
             scanner.nextLine();
@@ -248,9 +240,9 @@ public class LAMBDA {
     }
 
     private static void ADD_SUBJECT() {
-        System.out.println(repeatChar('=', 62));
+        System.out.println("-".repeat(62));
         System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.println(repeatChar('=', 62));
+        System.out.println("-".repeat(62));
         scanner.nextLine();
         System.out.print("Enter Subject Title: ");
         String TITLE = scanner.nextLine();
