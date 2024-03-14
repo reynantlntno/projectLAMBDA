@@ -51,6 +51,9 @@ public class LAMBDA {
                 case "10":
                     REM_SUBJECT();
                     break;
+                case "11":
+                    EDIT_INSTRUCTOR_DETAILS();
+                    break;
                 case "CLEAR":
                     CLEAR_SCREEN();
                     SHOW_SPL();
@@ -126,6 +129,7 @@ public class LAMBDA {
         System.out.println(" 8     | Unenroll a STUDENT");
         System.out.println(" 9     | Remove a INSTRUCTOR");
         System.out.println(" 10    | Remove a SUBJECT");
+        System.out.println(" 11    | Edit INSTRUCTOR Details");
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");
         System.out.println("=".repeat(62));
@@ -404,4 +408,36 @@ public class LAMBDA {
         System.out.println("SUBJECT " + SUBJECT_ID + " removed.");
     }
 
-}
+    private static void EDIT_INSTRUCTOR_DETAILS() {
+        scanner.nextLine();
+        System.out.print("Enter Instructor ID to edit details: ");
+        String INSTRUCTOR_ID = scanner.nextLine();
+        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
+        if (INSTRUCTOR == null) {
+            System.out.println("Invalid Instructor ID.");
+            return;
+        }
+    
+        System.out.println("Enter new details for the instructor:");
+        System.out.print("Last Name: ");
+        String LAST_NAME = scanner.nextLine();
+        INSTRUCTOR.SET_LASTNAME(LAST_NAME);
+        System.out.print("First Name: ");
+        String FIRST_NAME = scanner.nextLine();
+        INSTRUCTOR.SET_FIRSTNAME(FIRST_NAME);
+        System.out.print("Middle Name (optional): ");
+        String MIDDLE_NAME = scanner.nextLine();
+        INSTRUCTOR.SET_MIDDLENAME(MIDDLE_NAME);
+        System.out.print("Address: ");
+        String ADDRESS = scanner.nextLine();
+        INSTRUCTOR.SET_ADDRESS(ADDRESS);
+        System.out.print("Email Address: ");
+        String EMAIL_ADDRESS = scanner.nextLine();
+        INSTRUCTOR.SET_EMAILADD(EMAIL_ADDRESS);
+        System.out.print("Contact Number: ");
+        String CONTACT_NUMBER = scanner.nextLine();
+        INSTRUCTOR.SET_CONTACTNUM(CONTACT_NUMBER);
+    
+        System.out.println("Instructor details updated successfully.");
+    }
+}    
