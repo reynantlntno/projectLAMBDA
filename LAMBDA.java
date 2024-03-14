@@ -66,7 +66,7 @@ public class LAMBDA {
     }
 
     private static void CLEAR_SCREEN() {
-        System.out.print("\033[H\033[2J");  
+        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
@@ -85,26 +85,34 @@ public class LAMBDA {
     }
 
     private static void LAMBDA_CAPTCHA() {
-        try {
-            System.out.print("\n10 * 10 = ");
-            int PRODUCT = scanner.nextInt();
-            if (PRODUCT == 100) {
-                System.out.print("Correct Answer! \n");
-                CLEAR_SCREEN();
-                SHOW_SPL();
-                return;
-            } else {
-                System.out.print("Wrong Answer! \n");
-                LAMBDA_CAPTCHA();
+        int attempts = 0;
+        while (attempts < 2) {
+            try {
+                System.out.print("\n10 * 10 = ");
+                int PRODUCT = scanner.nextInt();
+                if (PRODUCT == 100) {
+                    System.out.print("Correct Answer! \n");
+                    CLEAR_SCREEN();
+                    SHOW_SPL();
+                    return;
+                } else {
+                    System.out.print("Wrong Answer! \n");
+                    attempts++;
+                    if (attempts == 2) {
+                        System.out.println("Maximum attempts reached. Exiting...");
+                        System.exit(0); 
+                    }
+                    System.out.println("You have " + (2 - attempts) + " attempts remaining.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input! Try again.");
+                scanner.nextLine();
             }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input! Try again.");
-            scanner.nextLine(); 
-            LAMBDA_CAPTCHA();
         }
     }
-
+    
     private static void SHOW_MENU() {
+        
         System.out.println("\n" + "=".repeat(62));
         System.out.println("No     | Option");
         System.out.println("-------+------------------------------------------------------");
@@ -119,9 +127,8 @@ public class LAMBDA {
         System.out.println(" 9     | Remove a INSTRUCTOR");
         System.out.println(" 10    | Remove a SUBJECT");
         System.out.println(" CLEAR | Clear Screen");
-        System.out.println(" EXIT  | Exit LAMBDA");  
+        System.out.println(" EXIT  | Exit LAMBDA");
         System.out.println("=".repeat(62));
-        scanner.nextLine();
         System.out.print("Enter your choice: ");
     }
 
@@ -139,41 +146,40 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
 
         try {
-        scanner.nextLine();
-        System.out.print("Enter last name: ");
-        String LAST_NAME = scanner.nextLine();
-        System.out.print("Enter first name: ");
-        String FIRST_NAME = scanner.nextLine();
-        System.out.print("Enter middle name (optional): ");
-        String MIDDLE_NAME = scanner.nextLine();
-        System.out.print("Enter Address: ");
-        String ADDRESS = scanner.nextLine();
-        System.out.print("Enter Email Address: ");
-        String EMAIL_ADDRESS = scanner.nextLine();
-        System.out.print("Enter Contact Number: ");
-        String CONTACT_NUMBER = scanner.nextLine();  
-        System.out.print("Enter Start Year: 20");
-        int YEAR = scanner.nextInt();
-        int AGE;
-        do {
-            System.out.print("Enter Age (>= " + MIN_INSTRUCTOR_AGE + "): ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Invalid Age! Please enter a valid Age.");
-                scanner.nextLine();
-            }
-            AGE = scanner.nextInt();
-        } while (AGE < MIN_INSTRUCTOR_AGE);
-        
+            scanner.nextLine();
+            System.out.print("Enter last name: ");
+            String LAST_NAME = scanner.nextLine();
+            System.out.print("Enter first name: ");
+            String FIRST_NAME = scanner.nextLine();
+            System.out.print("Enter middle name (optional): ");
+            String MIDDLE_NAME = scanner.nextLine();
+            System.out.print("Enter Address: ");
+            String ADDRESS = scanner.nextLine();
+            System.out.print("Enter Email Address: ");
+            String EMAIL_ADDRESS = scanner.nextLine();
+            System.out.print("Enter Contact Number: ");
+            String CONTACT_NUMBER = scanner.nextLine();
+            System.out.print("Enter Start Year: 20");
+            int YEAR = scanner.nextInt();
+            int AGE;
+            do {
+                System.out.print("Enter Age (>= " + MIN_INSTRUCTOR_AGE + "): ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Invalid Age! Please enter a valid Age.");
+                    scanner.nextLine();
+                }
+                AGE = scanner.nextInt();
+            } while (AGE < MIN_INSTRUCTOR_AGE);
 
-        String ID = GENERATE_INS_ID(YEAR);
-        INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
-        INSTRUCTORS.add(INSTRUCTOR);
-        System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
+            String ID = GENERATE_INS_ID(YEAR);
+            INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
+            INSTRUCTORS.add(INSTRUCTOR);
+            System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
 
         } catch (InputMismatchException e) {
-        System.out.println("Invalid input! Try again.");
-        scanner.nextLine(); 
-        ADD_INSTRUCTOR(); 
+            System.out.println("Invalid input! Try again.");
+            scanner.nextLine();
+            ADD_INSTRUCTOR();
         }
     }
 
@@ -186,7 +192,7 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
         System.out.println("STUDENT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
         System.out.println("-".repeat(62));
-    
+
         try {
             scanner.nextLine();
             System.out.print("Enter last name: ");
@@ -212,15 +218,15 @@ public class LAMBDA {
                 }
                 AGE = scanner.nextInt();
             } while (AGE < MIN_STUDENT_AGE);
-    
+
             String ID = GENERATE_ST_ID(YEAR);
             STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
             STUDENTS.add(STUDENT);
             System.out.println("Student added successfully. Details: \n" + STUDENT);
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Try again.");
-            scanner.nextLine(); 
-            ADD_STUDENT(); 
+            scanner.nextLine();
+            ADD_STUDENT();
         }
     }
 
@@ -233,7 +239,7 @@ public class LAMBDA {
         System.out.println("-".repeat(62));
         System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
         System.out.println("-".repeat(62));
- 
+        scanner.nextLine();
         System.out.print("Enter Subject Title: ");
         String TITLE = scanner.nextLine();
         System.out.print("Enter Subject Description: ");
@@ -244,7 +250,7 @@ public class LAMBDA {
     }
 
     private static void ASSIGN_SUB_TO_INS() {
- 
+        scanner.nextLine();
         System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
@@ -263,11 +269,11 @@ public class LAMBDA {
 
         INSTRUCTOR.ADD_SUBJECT(SUBJECT);
         System.out.println("Subject assigned to Instructor successfully.");
-        
+
     }
 
     private static void ADD_SUB_TO_ST() {
- 
+        scanner.nextLine();
         System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -289,7 +295,7 @@ public class LAMBDA {
     }
 
     private static void SHOW_ST_INFO() {
- 
+        scanner.nextLine();
         System.out.print("Enter Student ID: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -311,7 +317,7 @@ public class LAMBDA {
     }
 
     private static void SHOW_INS_INFO() {
- 
+        scanner.nextLine();
         System.out.print("Enter Instructor ID: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
@@ -360,7 +366,7 @@ public class LAMBDA {
     }
 
     private static void REM_STUDENT() {
- 
+        scanner.nextLine();
         System.out.print("Enter Student ID to unenroll: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -369,35 +375,33 @@ public class LAMBDA {
             return;
         }
         STUDENTS.remove(STUDENT);
-        System.out.println("Student " + STUDENT_ID + "unenrolled.");
+        System.out.println("Student " + STUDENT_ID + " unenrolled.");
     }
 
     private static void REM_INSTRUCTOR() {
- 
+        scanner.nextLine();
         System.out.print("\nEnter Instructor ID to remove: ");
         String INSTRUCTOR_ID = scanner.nextLine();
         INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
         if (INSTRUCTOR == null) {
-        System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
+            System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
             return;
-
         }
         INSTRUCTORS.remove(INSTRUCTOR);
-            System.out.println("Student " + INSTRUCTOR_ID + " unenrolled.");
+        System.out.println("Instructor " + INSTRUCTOR_ID + " removed.");
     }
+
     private static void REM_SUBJECT() {
- 
+        scanner.nextLine();
         System.out.print("\nEnter Subject Code to remove: ");
         String SUBJECT_ID = scanner.nextLine();
         SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
         if (SUBJECT == null) {
-        System.out.println("Subject with Code " + SUBJECT_ID + " not found.");
+            System.out.println("Subject with Code " + SUBJECT_ID + " not found.");
             return;
-
         }
         SUBJECTS.remove(SUBJECT);
-            System.out.println("SUBJECT " + SUBJECT_ID + " removed.");
+        System.out.println("SUBJECT " + SUBJECT_ID + " removed.");
     }
 
 }
-
