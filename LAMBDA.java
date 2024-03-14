@@ -13,6 +13,7 @@ public class LAMBDA {
     public static void main(String[] args) {
         SHOW_SPL();
         PROMPT_LOGIN();
+        LAMBDA_CAPTCHA();
         while (true) {
             SHOW_MENU();
             int choice = GET_CHOICE();
@@ -42,7 +43,7 @@ public class LAMBDA {
                     REM_STUDENT();
                     break;
                 case 9:
-                    System.out.println("hindi pa ready");
+                    REM_INSTRUCTOR();
                     break;
                 case 10:
                     System.out.println("hindi pa ready");
@@ -70,6 +71,21 @@ public class LAMBDA {
 
     }
 
+    private static void LAMBDA_CAPTCHA() {
+        System.out.print("\n10 * 10 = ");
+        int PRODUCT = scanner.nextInt();
+        if (PRODUCT == 100) {
+            System.out.print("Correct!");
+            return;
+
+        }
+        else {
+            System.out.print("Wrong!");
+            LAMBDA_CAPTCHA();
+        }
+
+    }
+
     private static void SHOW_MENU() {
         System.out.println("\n" + "=".repeat(60));
         System.out.println("No    | Option");
@@ -82,7 +98,7 @@ public class LAMBDA {
         System.out.println(" 6    | Display STUDENT's Information and SUBJECT Details");
         System.out.println(" 7    | Display INSTRUCTOR's Details and SUBJECTS Handled");
         System.out.println(" 8    | Unenroll a STUDENT");
-        System.out.println(" 9    | Remove a INSTRUCTOR (Not yet ready hahaha)");
+        System.out.println(" 9    | Remove a INSTRUCTOR");
         System.out.println(" 10   | Remove a SUBJECT (Not yet ready hahaha)");
         System.out.println(" 11   | Exit LAMBDA");  
         System.out.println("=".repeat(60));
@@ -294,7 +310,7 @@ public class LAMBDA {
 
     private static SUBJECT FIND_SUB_ID(String CODE) {
         for (SUBJECT SUBJECT : SUBJECTS) {
-            if (SUBJECT.getCode().equals(CODE)) {
+            if (SUBJECT.GET_CODE().equals(CODE)) {
                 return SUBJECT;
             }
         }
@@ -302,6 +318,8 @@ public class LAMBDA {
     }
 
     private static void REM_STUDENT() {
+        System.out.print(" ");
+        scanner.nextLine();
         System.out.print("Enter Student ID to unenroll: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
@@ -311,6 +329,21 @@ public class LAMBDA {
         }
         STUDENTS.remove(STUDENT);
         System.out.println("Student " + STUDENT_ID + "unenrolled.");
+    }
+
+    private static void REM_INSTRUCTOR() {
+        System.out.print(" ");
+        scanner.nextLine();
+        System.out.print("\nEnter Instructor ID to remove: ");
+        String INSTRUCTOR_ID = scanner.nextLine();
+        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
+        if (INSTRUCTOR == null) {
+        System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
+            return;
+
+        }
+        INSTRUCTORS.remove(INSTRUCTOR);
+            System.out.println("Student " + INSTRUCTOR_ID + "unenrolled.");
     }
 
 }

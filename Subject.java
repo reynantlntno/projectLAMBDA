@@ -19,20 +19,20 @@ class SUBJECT {
     }
 
     // Getters and setters
-    public String getCode() {
+    public String GET_CODE() {
         return CODE;
     }
 
-    public String getTitle() {
+    public String GET_TITLE() {
         return TITLE;
     }
 
-    public String getDescription() {
+    public String GET_DESC() {
         return DESC;
     }
 
     @Override
     public String toString() {
-        return "SUBJECT: \n" + TITLE + ", CODE: " + CODE + ", DESC: " + DESC;
+        return "SUBJECT: \n" + TITLE + ", CODE: " + CODE + ", DESCRIPTION: " + DESC;
     }
 }
