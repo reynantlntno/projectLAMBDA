@@ -17,6 +17,7 @@ public class LAMBDA {
         SHOW_SPL();
         PROMPT_LOGIN();
         LAMBDA_CAPTCHA();
+        displaySplashText();
         while (true) {
             SHOW_MENU();
             String choice = GET_CHOICE();
@@ -74,7 +75,7 @@ public class LAMBDA {
         double LAMBDA_VERS = 1.0;
         String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
         int padding = (62 - SPLASH_TXT.length()) / 2;
-        System.out.println("\n" + repeatChar('=', padding) + splashText + repeatChar('=', padding));
+        System.out.println("\n" + repeatChar('=', padding) + SPLASH_TXT + repeatChar('=', padding));
     }
 
     private static void PROMPT_LOGIN() {
@@ -100,7 +101,7 @@ public class LAMBDA {
                     attempts++;
                     if (attempts == 2) {
                         System.out.println("Maximum attempts reached. Exiting...");
-                        System.exit(0); 
+                        System.exit(0);
                     }
                     System.out.println("You have " + (2 - attempts) + " attempts remaining.");
                 }
@@ -110,7 +111,13 @@ public class LAMBDA {
             }
         }
     }
-    
+
+    private static void displaySplashText() {
+        String splashText = "Welcome to University Management Profiling System!";
+        int padding = (80 - splashText.length()) / 2;
+        System.out.println("\n" + repeatChar('=', padding) + splashText + repeatChar('=', padding));
+    }
+
     private static void SHOW_MENU() {
         System.out.println("\n" + repeatChar('=', 60));
         System.out.println("No     | Option");
@@ -180,7 +187,8 @@ public class LAMBDA {
             } while (AGE < MIN_INSTRUCTOR_AGE);
 
             String ID = GENERATE_INS_ID(YEAR);
-            INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
+            INSTRUCTOR INSTRUCTOR = new INSTRUCTOR(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS,
+                    CONTACT_NUMBER, AGE, YEAR);
             INSTRUCTORS.add(INSTRUCTOR);
             System.out.println("INSTRUCTOR added successfully. Details: \n" + INSTRUCTOR);
 
@@ -197,9 +205,9 @@ public class LAMBDA {
     }
 
     private static void ADD_STUDENT() {
-        System.out.println("-".repeat(62));
+        System.out.println(repeatChar('=', 62));
         System.out.println("STUDENT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.println("-".repeat(62));
+        System.out.println(repeatChar('=', 62));
 
         try {
             scanner.nextLine();
@@ -228,7 +236,8 @@ public class LAMBDA {
             } while (AGE < MIN_STUDENT_AGE);
 
             String ID = GENERATE_ST_ID(YEAR);
-            STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS, CONTACT_NUMBER, AGE, YEAR);
+            STUDENT STUDENT = new STUDENT(ID, LAST_NAME, FIRST_NAME, MIDDLE_NAME, ADDRESS, EMAIL_ADDRESS,
+                    CONTACT_NUMBER, AGE, YEAR);
             STUDENTS.add(STUDENT);
             System.out.println("Student added successfully. Details: \n" + STUDENT);
         } catch (InputMismatchException e) {
