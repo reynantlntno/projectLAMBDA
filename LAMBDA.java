@@ -17,6 +17,7 @@ public class LAMBDA {
         SHOW_SPL();
         PROMPT_LOGIN();
         LAMBDA_CAPTCHA();
+        HEADER_UMPS();
         while (true) {
             SHOW_MENU();
             String choice = GET_CHOICE();
@@ -43,19 +44,19 @@ public class LAMBDA {
                     SHOW_INS_INFO();
                     break;
                 case "8":
-                    REM_STUDENT();
-                    break;
-                case "9":
-                    REM_INSTRUCTOR();
-                    break;
-                case "10":
-                    REM_SUBJECT();
-                    break;
-                case "11":
                     EDIT_INSTRUCTOR_DETAILS();
                     break;
-                case "12":
+                case "9":
                     EDIT_STUDENT_DETAILS();
+                    break;
+                case "10":
+                    REM_STUDENT();
+                    break;
+                case "11":
+                    REM_INSTRUCTOR();
+                    break;
+                case "12":
+                    REM_SUBJECT();
                     break;
                 case "CLEAR":
                     CLEAR_SCREEN();
@@ -64,7 +65,7 @@ public class LAMBDA {
                 case "EXIT":
                     CLEAR_SCREEN();
                     System.out.println("Exiting LAMBDA...");
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Invalid choice, please try again.");
             }
@@ -117,7 +118,12 @@ public class LAMBDA {
         }
     }
 
+    private static void HEADER_UMPS() {
+        System.out.print("Welcome to University Management Profiling System!");
+    }
+
     private static void SHOW_MENU() {
+    
 
         System.out.println("\n" + "=".repeat(62));
         System.out.println("No     | Option");
@@ -129,11 +135,11 @@ public class LAMBDA {
         System.out.println(" 5     | Add SUBJECT to STUDENT");
         System.out.println(" 6     | Display STUDENT's Information and SUBJECT Details");
         System.out.println(" 7     | Display INSTRUCTOR's Details and SUBJECTS Handled");
-        System.out.println(" 8     | Unenroll a STUDENT");
-        System.out.println(" 9     | Remove a INSTRUCTOR");
-        System.out.println(" 10    | Remove a SUBJECT");
-        System.out.println(" 11    | Edit INSTRUCTOR Details");
-        System.out.println(" 12    | Edit STUDENT Details");
+        System.out.println(" 8     | Edit INSTRUCTOR Details");
+        System.out.println(" 9     | Edit STUDENT Details");
+        System.out.println(" 10    | Unenroll a STUDENT");
+        System.out.println(" 11    | Remove a INSTRUCTOR");
+        System.out.println(" 12    | Remove a SUBJECT");
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");
         System.out.println("=".repeat(62));
@@ -149,9 +155,9 @@ public class LAMBDA {
     }
 
     private static void ADD_INSTRUCTOR() {
-        System.out.print("\n==============================================================");
+        System.out.print("\n==============================================================\n");
         System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
-        System.out.print("\n==============================================================");
+        System.out.print("==============================================================\n");
 
         try {
             scanner.nextLine();
@@ -472,67 +478,109 @@ public class LAMBDA {
 
     private static void EDIT_INSTRUCTOR_DETAILS() {
         scanner.nextLine();
-        System.out.print("Enter Instructor ID to edit details: ");
+        System.out.print("Enter Instructor ID to edit: ");
         String INSTRUCTOR_ID = scanner.nextLine();
-        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
-        if (INSTRUCTOR == null) {
-            System.out.println("Invalid Instructor ID.");
+        INSTRUCTOR instructor = FIND_INS_ID(INSTRUCTOR_ID);
+        if (instructor == null) {
+            System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
             return;
         }
 
-        System.out.println("Enter new details for the instructor:");
-        System.out.print("Last Name: ");
-        String LAST_NAME = scanner.nextLine();
-        INSTRUCTOR.SET_LASTNAME(LAST_NAME);
-        System.out.print("First Name: ");
-        String FIRST_NAME = scanner.nextLine();
-        INSTRUCTOR.SET_FIRSTNAME(FIRST_NAME);
-        System.out.print("Middle Name (optional): ");
-        String MIDDLE_NAME = scanner.nextLine();
-        INSTRUCTOR.SET_MIDDLENAME(MIDDLE_NAME);
-        System.out.print("Address: ");
-        String ADDRESS = scanner.nextLine();
-        INSTRUCTOR.SET_ADDRESS(ADDRESS);
-        System.out.print("Email Address: ");
-        String EMAIL_ADDRESS = scanner.nextLine();
-        INSTRUCTOR.SET_EMAILADD(EMAIL_ADDRESS);
-        System.out.print("Contact Number: ");
-        String CONTACT_NUMBER = scanner.nextLine();
-        INSTRUCTOR.SET_CONTACTNUM(CONTACT_NUMBER);
+        System.out.println("Choose which attribute to edit:");
+        System.out.println("1     | Last Name");
+        System.out.println("2     | First Name");
+        System.out.println("3     | Middle Name");
+        System.out.println("4     | Address");
+        System.out.println("5     | Age");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new last name: ");
+                String newLastName = scanner.nextLine().trim();
+                instructor.SET_LASTNAME(newLastName);
+                break;
+            case 2:
+                System.out.print("Enter new first name: ");
+                String newFirstName = scanner.nextLine().trim();
+                instructor.SET_FIRSTNAME(newFirstName);
+                break;
+            case 3:
+                System.out.print("Enter new middle name: ");
+                String newMiddleName = scanner.nextLine().trim();
+                instructor.SET_MIDDLENAME(newMiddleName);
+                break;
+            case 4:
+                System.out.print("Enter new address: ");
+                String newAddress = scanner.nextLine().trim();
+                instructor.SET_ADDRESS(newAddress);
+                break;
+            case 5:
+                System.out.print("Enter new age: ");
+                int newAge = scanner.nextInt();
+                instructor.SET_AGE(newAge);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
 
         System.out.println("Instructor details updated successfully.");
     }
+
     private static void EDIT_STUDENT_DETAILS() {
         scanner.nextLine();
-        System.out.print("Enter Student ID to edit details: ");
+        System.out.print("Enter Student ID to edit: ");
         String STUDENT_ID = scanner.nextLine();
         STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
         if (STUDENT == null) {
-            System.out.println("Invalid Student ID.");
+            System.out.println("Student with ID " + STUDENT_ID + " not found.");
             return;
         }
-    
-        System.out.println("Enter new details for the Student:");
-        System.out.print("Last Name: ");
-        String LAST_NAME = scanner.nextLine();
-        STUDENT.SET_LASTNAME(LAST_NAME);
-        System.out.print("First Name: ");
-        String FIRST_NAME = scanner.nextLine();
-        STUDENT.SET_FIRSTNAME(FIRST_NAME);
-        System.out.print("Middle Name (optional): ");
-        String MIDDLE_NAME = scanner.nextLine();
-        STUDENT.SET_MIDDLENAME(MIDDLE_NAME);
-        System.out.print("Address: ");
-        String ADDRESS = scanner.nextLine();
-        STUDENT.SET_ADDRESS(ADDRESS);
-        System.out.print("Email Address: ");
-        String EMAIL_ADDRESS = scanner.nextLine();
-        STUDENT.SET_EMAILADD(EMAIL_ADDRESS);
-        System.out.print("Contact Number: ");
-        String CONTACT_NUMBER = scanner.nextLine();
-        STUDENT.SET_CONTACTNUM(CONTACT_NUMBER);
-    
-        System.out.println("Student details updated successfully.");
-    }
-}    
 
+        System.out.println("Choose which attribute to edit:");
+        System.out.println("1     | Last Name");
+        System.out.println("2     | First Name");
+        System.out.println("3     | Middle Name");
+        System.out.println("4     | Address");
+        System.out.println("5     | Age");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // Consume newline character
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter new last name: ");
+                String newLastName = scanner.nextLine().trim();
+                STUDENT.SET_LASTNAME(newLastName);
+                break;
+            case 2:
+                System.out.print("Enter new first name: ");
+                String newFirstName = scanner.nextLine().trim();
+                STUDENT.SET_FIRSTNAME(newFirstName);
+                break;
+            case 3:
+                System.out.print("Enter new middle name: ");
+                String newMiddleName = scanner.nextLine().trim();
+                STUDENT.SET_MIDDLENAME(newMiddleName);
+                break;
+            case 4:
+                System.out.print("Enter new address: ");
+                String newAddress = scanner.nextLine().trim();
+                STUDENT.SET_ADDRESS(newAddress);
+                break;
+            case 5:
+                System.out.print("Enter new age: ");
+                int newAge = scanner.nextInt();
+                STUDENT.SET_AGE(newAge);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                return;
+        }
+
+        System.out.println("Instructor details updated successfully.");
+    }
+}
