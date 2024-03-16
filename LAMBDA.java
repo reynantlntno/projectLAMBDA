@@ -81,7 +81,7 @@ public class LAMBDA {
         double LAMBDA_VERS = 1.0;
         String LAMBDA_STAT = "ALPHA";
         String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
-        System.out.print("\n[" + SPLASH_TXT +  "   UMPS         " + LAMBDA_STAT  + " ]\n");
+        System.out.print("\n[" + SPLASH_TXT +  "     UMPS     " + LAMBDA_STAT  + " ]\n");
     }
 
     private static void PROMPT_LOGIN() {
@@ -142,7 +142,7 @@ public class LAMBDA {
         System.out.println(" 12    | Remove a SUBJECT");
         System.out.println(" CLEAR | Clear Screen");
         System.out.println(" EXIT  | Exit LAMBDA");
-        System.out.println("=".repeat(62));
+        System.out.print("==============================================================\n");
         System.out.print("Enter your choice: ");
     }
 
@@ -548,8 +548,7 @@ public class LAMBDA {
         System.out.println("5     | Age");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline character
-
+        scanner.nextLine(); 
         switch (choice) {
             case 1:
                 System.out.print("Enter new last name: ");
