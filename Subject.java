@@ -1,27 +1,29 @@
-/* Fuertez, Balce Vince, Quila
+/* 
+   Fuertez, Balce Vince, Quila
    BSIS 1A
    IS 102 Computer Programming 2
    IS 103 Data Structures and Algorithms
-
 */
 
-
 // Subject.java
-// put notes here
+// put notes here (bug notes o kahit ano)
+
 
 import java.util.*;
 
 class Subject {
-    private String code;
-    private String title;
-    private String description;
+    private String code; // ID for the subject
+    private String title; // Title of the subject
+    private String description; // Description of the subject
 
+    // Constructor
     public Subject(String title, String description) {
-        this.code = generateSubId();
+        this.code = generateSubId(); // Generate subject ID for the subject
         this.title = title;
         this.description = description;
     }
 
+    // Generate a ID for the subject
     private String generateSubId() {
         Random rand = new Random();
         return "SUB-" + (rand.nextInt(9000) + 1000);
@@ -40,6 +42,7 @@ class Subject {
         return description;
     }
 
+    // Override toString method 
     @Override
     public String toString() {
         return "SUBJECT: \n" + title + ", CODE: " + code + ", DESCRIPTION: " + description;
