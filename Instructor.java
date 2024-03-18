@@ -1,3 +1,11 @@
+/* Fuertez, Balce Vince, Quila
+   BSIS 1A
+   IS 102 Computer Programming 2
+   IS 103 Data Structures and Algorithms
+
+*/
+
+
 // Instructor.java
 // put notes here
 

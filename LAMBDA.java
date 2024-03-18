@@ -1,6 +1,12 @@
-// LAMBDA.java
+/* Fuertez, Balce Vince, Quila
+   BSIS 1A
+   IS 102 Computer Programming 2
+   IS 103 Data Structures and Algorithms
 
-// Put notes here
+*/
+
+// LAMBDA.java
+// Put notes here (bug notes kung meron)
 
 import java.util.*;
 

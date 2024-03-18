@@ -1,5 +1,13 @@
+/* Fuertez, Balce Vince, Quila
+   BSIS 1A
+   IS 102 Computer Programming 2
+   IS 103 Data Structures and Algorithms
+
+*/
+
 // Entity.java
 // put notes here
+
 
 class Entity {
     private String id;
@@ -23,6 +31,8 @@ class Entity {
         this.year = year;
         this.age = age;
     }
+
+    // get & set (setter and getter)
 
     public String getId() {
         return id;
