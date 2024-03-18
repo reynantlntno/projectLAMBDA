@@ -1,39 +1,39 @@
-// SUBJECT.java
+// Subject.java
 // put notes here
 
 import java.util.*;
 
-class SUBJECT {
-    private String CODE;
-    private String TITLE;
-    private String DESC;
+class Subject {
+    private String code;
+    private String title;
+    private String description;
 
-    public SUBJECT(String TITLE, String DESC) {
-        this.CODE = GENERATE_SUB_ID();
-        this.TITLE = TITLE;
-        this.DESC = DESC;
+    public Subject(String title, String description) {
+        this.code = generateSubId();
+        this.title = title;
+        this.description = description;
     }
 
-    private String GENERATE_SUB_ID() {
+    private String generateSubId() {
         Random rand = new Random();
         return "SUB-" + (rand.nextInt(9000) + 1000);
     }
 
-    // Getters and setters
-    public String GET_CODE() {
-        return CODE;
+    // Getters
+    public String getCode() {
+        return code;
     }
 
-    public String GET_TITLE() {
-        return TITLE;
+    public String getTitle() {
+        return title;
     }
 
-    public String GET_DESC() {
-        return DESC;
+    public String getDescription() {
+        return description;
     }
 
     @Override
     public String toString() {
-        return "SUBJECT: \n" + TITLE + ", CODE: " + CODE + ", DESCRIPTION: " + DESC;
+        return "SUBJECT: \n" + title + ", CODE: " + code + ", DESCRIPTION: " + description;
     }
 }

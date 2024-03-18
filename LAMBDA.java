@@ -1,70 +1,72 @@
 // LAMBDA.java
 
-// put notes here
-// 
+// Put notes here
 
 import java.util.*;
 
 public class LAMBDA {
     private static Scanner scanner = new Scanner(System.in);
-    private static List<INSTRUCTOR> INSTRUCTORS = new ArrayList<>();
-    private static List<STUDENT> STUDENTS = new ArrayList<>();
-    private static List<SUBJECT> SUBJECTS = new ArrayList<>();
+    private static List<Instructor> instructors = new ArrayList<>();
+    private static List<Student> students = new ArrayList<>();
+    private static List<Subject> subjects = new ArrayList<>();
     private static final int MIN_INSTRUCTOR_AGE = 24;
+    private static final int MAX_INSTRUCTOR_AGE = 70;
     private static final int MIN_STUDENT_AGE = 17;
+    private static final int MAX_STUDENT_AGE = 70;
+    private static String username;
 
     public static void main(String[] args) {
-        SHOW_SPL();
-        PROMPT_LOGIN();
-        LAMBDA_CAPTCHA();
-        HEADER_UMPS();
+        showSplash();
+        username = promptLogin();
+        lambdaCaptcha();
+        headerUmps();
         while (true) {
-            SHOW_MENU();
-            String choice = GET_CHOICE();
+            showMenu();
+            String choice = getChoice();
             switch (choice) {
                 case "1":
-                    ADD_INSTRUCTOR();
+                    addInstructor();
                     break;
                 case "2":
-                    ADD_STUDENT();
+                    addStudent();
                     break;
                 case "3":
-                    ADD_SUBJECT();
+                    addSubject();
                     break;
                 case "4":
-                    ASSIGN_SUB_TO_INS();
+                    assignSubToIns();
                     break;
                 case "5":
-                    ADD_SUB_TO_ST();
+                    addSubToSt();
                     break;
                 case "6":
-                    SHOW_ST_INFO();
+                    showStInfo();
                     break;
                 case "7":
-                    SHOW_INS_INFO();
+                    showInsInfo();
                     break;
                 case "8":
-                    EDIT_INSTRUCTOR_DETAILS();
+                    editInstructorDetails();
                     break;
                 case "9":
-                    EDIT_STUDENT_DETAILS();
+                    editStudentDetails();
                     break;
                 case "10":
-                    REM_STUDENT();
+                    remStudent();
                     break;
                 case "11":
-                    REM_INSTRUCTOR();
+                    remInstructor();
                     break;
                 case "12":
-                    REM_SUBJECT();
+                    remSubject();
                     break;
                 case "CLEAR":
-                    CLEAR_SCREEN();
-                    SHOW_SPL();
+                    clearScreen();
+                    showSplash();
                     break;
                 case "EXIT":
-                    CLEAR_SCREEN();
-                    System.out.println("Exiting LAMBDA...");
+                    clearScreen();
+                    System.out.println("Exiting Lambda...");
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice, please try again.");
@@ -72,35 +74,35 @@ public class LAMBDA {
         }
     }
 
-    private static void CLEAR_SCREEN() {
+    private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
-    private static void SHOW_SPL() {
-        double LAMBDA_VERS = 1.0;
-        String LAMBDA_STAT = "ALPHA";
-        String SPLASH_TXT = " LAMBDA " + LAMBDA_VERS + " ";
-        System.out.print("\n[" + SPLASH_TXT +  "     UMPS     " + LAMBDA_STAT  + " ]\n");
+    private static void showSplash() {
+        double lambdaVers = 1.0;
+        String lambdaStat = "ALPHA";
+        String splashTxt = " LAMBDA " + lambdaVers + " ";
+        System.out.print("\n[" + splashTxt +  "     UMPS     " + lambdaStat  + " ]\n");
     }
 
-    private static void PROMPT_LOGIN() {
+    private static String promptLogin() {
         System.out.print("Please enter your username for record purposes: ");
-        String USERNAME = scanner.nextLine();
-        System.out.print("Hello " + USERNAME + "! Please answer the question below: \n");
-
+        return scanner.nextLine();
+        
     }
 
-    private static void LAMBDA_CAPTCHA() {
+    private static void lambdaCaptcha() {
         int attempts = 0;
         while (attempts < 2) {
             try {
-                System.out.print("\n10 * 10 = ");
-                int PRODUCT = scanner.nextInt();
-                if (PRODUCT == 100) {
+                System.out.print("Please answer the question below: \n");
+                System.out.print("\n -- 10 * 10 = ");
+                int product = scanner.nextInt();
+                if (product == 100) {
                     System.out.print("Correct Answer! \n");
-                    CLEAR_SCREEN();
-                    SHOW_SPL();
+                    clearScreen();
+                    showSplash();
                     return;
                 } else {
                     System.out.print("Wrong Answer! \n");
@@ -118,45 +120,47 @@ public class LAMBDA {
         }
     }
 
-    private static void HEADER_UMPS() {
+    private static void headerUmps() {
         System.out.print("Welcome to University Management Profiling System!");
     }
 
-    private static void SHOW_MENU() {
+    private static void showMenu() {
     
+        System.out.print("\nLogged in as: " + username);
 
-        System.out.println("\n" + "=".repeat(62));
+        System.out.print("\n==============================================================\n");
         System.out.println("No     | Option");
         System.out.println("-------+------------------------------------------------------");
-        System.out.println(" 1     | Add INSTRUCTOR");
-        System.out.println(" 2     | Add STUDENT");
-        System.out.println(" 3     | Add SUBJECT");
-        System.out.println(" 4     | Assign SUBJECT to INSTRUCTOR");
-        System.out.println(" 5     | Add SUBJECT to STUDENT");
-        System.out.println(" 6     | Display STUDENT's Information and SUBJECT Details");
-        System.out.println(" 7     | Display INSTRUCTOR's Details and SUBJECTS Handled");
-        System.out.println(" 8     | Edit INSTRUCTOR Details");
-        System.out.println(" 9     | Edit STUDENT Details");
-        System.out.println(" 10    | Unenroll a STUDENT");
-        System.out.println(" 11    | Remove a INSTRUCTOR");
-        System.out.println(" 12    | Remove a SUBJECT");
+        System.out.println(" 1     | Add Instructor");
+        System.out.println(" 2     | Add Student");
+        System.out.println(" 3     | Add Subject");
+        System.out.println(" 4     | Assign Subject to Instructor");
+        System.out.println(" 5     | Add Subject to Student");
+        System.out.println(" 6     | Display Student's Information and Subject Details");
+        System.out.println(" 7     | Display Instructor's Details and Subjects Handled");
+        System.out.println(" 8     | Edit Instructor Details");
+        System.out.println(" 9     | Edit Student Details");
+        System.out.println(" 10    | Unenroll a Student");
+        System.out.println(" 11    | Remove an Instructor");
+        System.out.println(" 12    | Remove a Subject");
         System.out.println(" CLEAR | Clear Screen");
-        System.out.println(" EXIT  | Exit LAMBDA");
+        System.out.println(" EXIT  | Exit Lambda");
         System.out.print("==============================================================\n");
         System.out.print("Enter your choice: ");
     }
 
-    private static String GET_CHOICE() {
+    private static String getChoice() {
         while (!scanner.hasNext()) {
             System.out.println("Invalid input! Please enter a number.");
             scanner.next();
         }
+        clearScreen();
         return scanner.next();
     }
 
-    private static void ADD_INSTRUCTOR() {
+    private static void addInstructor() {
         System.out.print("\n==============================================================\n");
-        System.out.println("INSTRUCTOR ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("Instructor Add: Please Correctly Type the Details!");
         System.out.print("==============================================================\n");
 
         try {
@@ -204,18 +208,25 @@ public class LAMBDA {
                     scanner.nextLine();
                 }
                 age = scanner.nextInt();
-            } while (age < MIN_INSTRUCTOR_AGE);
+                
+                if (age > MAX_INSTRUCTOR_AGE) {
+                    System.out.println("Warning: Maximum allowable age is " + MAX_INSTRUCTOR_AGE + ".");
+                }
+                else if (age < MIN_INSTRUCTOR_AGE) {
+                    System.out.println("Does not meet the minimum age requirement.");
+                }
+            } while (age < MIN_INSTRUCTOR_AGE || age > MAX_INSTRUCTOR_AGE);
 
-            String ID = GENERATE_INS_ID(year);
-            INSTRUCTOR instructor = new INSTRUCTOR(ID, lastName, firstName, middleName, address, emailAddress,
+            String id = generateInsId(year);
+            Instructor instructor = new Instructor(id, lastName, firstName, middleName, address, emailAddress,
                     contactNumber, age, year);
-            INSTRUCTORS.add(instructor);
-            System.out.println("INSTRUCTOR added successfully. Details: \n" + instructor);
+            instructors.add(instructor);
+            System.out.println("\nInstructor added successfully! \nHere are the details: \n" + "-----------------------------\n" + instructor);
 
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Please enter valid data.");
             scanner.nextLine();
-            ADD_INSTRUCTOR();
+            addInstructor();
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -230,14 +241,14 @@ public class LAMBDA {
         return true;
     }
 
-    private static String GENERATE_INS_ID(int YEAR) {
+    private static String generateInsId(int year) {
         Random rand = new Random();
-        return "INS" + YEAR + "-" + (rand.nextInt(9000) + 1000);
+        return "INS" + year + "-" + (rand.nextInt(9000) + 1000);
     }
 
-    private static void ADD_STUDENT() {
+    private static void addStudent() {
            System.out.print("\n==============================================================");
-        System.out.println("STUDENT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("Student Add: Please Correctly Type the Details!");
            System.out.print("\n==============================================================");
 
         try {
@@ -286,203 +297,209 @@ public class LAMBDA {
                     scanner.nextLine();
                 }
                 age = scanner.nextInt();
-            } while (age < MIN_STUDENT_AGE);
+                if (age > MAX_STUDENT_AGE) {
+                    System.out.println("Warning: Maximum allowable age is " + MAX_STUDENT_AGE + ".");
+                }
+                else if (age < MIN_STUDENT_AGE) {
+                    System.out.println("Does not meet the minimum age requirement.");
+                }
+            } while (age < MIN_STUDENT_AGE || age > MAX_STUDENT_AGE);
 
-            String ID = GENERATE_ST_ID(year);
-            STUDENT student = new STUDENT(ID, lastName, firstName, middleName, address, emailAddress,
+            String id = generateStId(year);
+            Student student = new Student(id, lastName, firstName, middleName, address, emailAddress,
                     contactNumber, age, year);
-            STUDENTS.add(student);
-            System.out.println("Student added successfully. Details: \n" + student);
+            students.add(student);
+            System.out.println("\nStudent added successfully! \nHere are the details: \n" + "-----------------------------\n" + student);
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         } catch (InputMismatchException e) {
             System.out.println("Invalid input! Try again.");
             scanner.nextLine();
-            ADD_STUDENT();
+            addStudent();
         }
     }
 
-    private static String GENERATE_ST_ID(int YEAR) {
+    private static String generateStId(int year) {
         Random rand = new Random();
-        return "ST" + YEAR + "-" + (rand.nextInt(9000) + 1000);
+        return "ST" + year + "-" + (rand.nextInt(9000) + 1000);
     }
 
-    private static void ADD_SUBJECT() {
+    private static void addSubject() {
         System.out.print("\n==============================================================");
-        System.out.println("SUBJECT ADD: PLEASE CORRECTLY TYPE THE DETAILS!");
+        System.out.println("Subject Add: Please Correctly Type the Details!");
         System.out.print("\n==============================================================");
         scanner.nextLine();
         System.out.print("Enter Subject Title: ");
-        String TITLE = scanner.nextLine();
+        String title = scanner.nextLine();
         System.out.print("Enter Subject Description: ");
-        String DESC = scanner.nextLine();
-        SUBJECT SUBJECT = new SUBJECT(TITLE, DESC);
-        SUBJECTS.add(SUBJECT);
-        System.out.println("Subject added successfully with Details: \n" + SUBJECT);
+        String desc = scanner.nextLine();
+        Subject subject = new Subject(title, desc);
+        subjects.add(subject);
+        System.out.println("\nSubject added successfully!\nHere are the details: \n" + "-----------------------------\n" + subject);
     }
 
-    private static void ASSIGN_SUB_TO_INS() {
+    private static void assignSubToIns() {
         scanner.nextLine();
         System.out.print("Enter Instructor ID: ");
-        String INSTRUCTOR_ID = scanner.nextLine();
-        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
-        if (INSTRUCTOR == null) {
+        String instructorId = scanner.nextLine();
+        Instructor instructor = findInsId(instructorId);
+        if (instructor == null) {
             System.out.println("Invalid Instructor ID.");
             return;
         }
 
         System.out.print("Enter Subject Code: ");
-        String SUBJECT_ID = scanner.nextLine();
-        SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
-        if (SUBJECT == null) {
+        String subjectId = scanner.nextLine();
+        Subject subject = findSubId(subjectId);
+        if (subject == null) {
             System.out.println("Invalid Subject Code.");
             return;
         }
 
-        INSTRUCTOR.ADD_SUBJECT(SUBJECT);
+        instructor.addSubject(subject);
         System.out.println("Subject assigned to Instructor successfully.");
 
     }
 
-    private static void ADD_SUB_TO_ST() {
+    private static void addSubToSt() {
         scanner.nextLine();
         System.out.print("Enter Student ID: ");
-        String STUDENT_ID = scanner.nextLine();
-        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
-        if (STUDENT == null) {
+        String studentId = scanner.nextLine();
+        Student student = findStId(studentId);
+        if (student == null) {
             System.out.println("Invalid Student ID.");
             return;
         }
 
         System.out.print("Enter Subject Code: ");
-        String SUBJECT_ID = scanner.nextLine();
-        SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
-        if (SUBJECT == null) {
+        String subjectId = scanner.nextLine();
+        Subject subject = findSubId(subjectId);
+        if (subject == null) {
             System.out.println("Invalid Subject Code.");
             return;
         }
 
-        STUDENT.ADD_SUBJECT(SUBJECT);
+        student.addSubject(subject);
         System.out.println("Subject added to Student successfully.");
     }
 
-    private static void SHOW_ST_INFO() {
+    private static void showStInfo() {
         scanner.nextLine();
         System.out.print("Enter Student ID: ");
-        String STUDENT_ID = scanner.nextLine();
-        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
-        if (STUDENT == null) {
+        String studentId = scanner.nextLine();
+        Student student = findStId(studentId);
+        if (student == null) {
             System.out.println("Invalid Student ID.");
             return;
         }
 
-        System.out.println(STUDENT);
-        List<SUBJECT> studentSubjects = STUDENT.GET_SUBS();
+        System.out.println(student);
+        List<Subject> studentSubjects = student.getSubjects();
         if (studentSubjects.isEmpty()) {
             System.out.println("No Subjects assigned to this Student.");
         } else {
             System.out.println("Subjects Assigned:");
-            for (SUBJECT SUBJECT : studentSubjects) {
-                System.out.println("- " + SUBJECT);
+            for (Subject subject : studentSubjects) {
+                System.out.println("- " + subject);
             }
         }
     }
 
-    private static void SHOW_INS_INFO() {
+    private static void showInsInfo() {
         scanner.nextLine();
         System.out.print("Enter Instructor ID: ");
-        String INSTRUCTOR_ID = scanner.nextLine();
-        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
-        if (INSTRUCTOR == null) {
+        String instructorId = scanner.nextLine();
+        Instructor instructor = findInsId(instructorId);
+        if (instructor == null) {
             System.out.println("Invalid Instructor ID.");
             return;
         }
 
-        System.out.println(INSTRUCTOR);
-        List<SUBJECT> INSTRUCTOR_SUBS = INSTRUCTOR.GET_SUBS();
-        if (INSTRUCTOR_SUBS.isEmpty()) {
+        System.out.println(instructor);
+        List<Subject> instructorSubs = instructor.getSubjects();
+        if (instructorSubs.isEmpty()) {
             System.out.println("No Subjects assigned to this Instructor.");
         } else {
-            System.out.println("SUBJECTS Handled:");
-            for (SUBJECT SUBJECT : INSTRUCTOR_SUBS) {
-                System.out.println("- " + SUBJECT);
+            System.out.println("Subjects Handled:");
+            for (Subject subject : instructorSubs) {
+                System.out.println("- " + subject);
             }
         }
     }
 
-    private static INSTRUCTOR FIND_INS_ID(String ID) {
-        for (INSTRUCTOR INSTRUCTOR : INSTRUCTORS) {
-            if (INSTRUCTOR.GET_ID().equals(ID)) {
-                return INSTRUCTOR;
-            }
-        }
-        return null;
-    }
-
-    private static STUDENT FIND_ST_ID(String ID) {
-        for (STUDENT STUDENT : STUDENTS) {
-            if (STUDENT.GET_ID().equals(ID)) {
-                return STUDENT;
+    private static Instructor findInsId(String id) {
+        for (Instructor instructor : instructors) {
+            if (instructor.getId().equals(id)) {
+                return instructor;
             }
         }
         return null;
     }
 
-    private static SUBJECT FIND_SUB_ID(String CODE) {
-        for (SUBJECT SUBJECT : SUBJECTS) {
-            if (SUBJECT.GET_CODE().equals(CODE)) {
-                return SUBJECT;
+    private static Student findStId(String id) {
+        for (Student student : students) {
+            if (student.getId().equals(id)) {
+                return student;
             }
         }
         return null;
     }
 
-    private static void REM_STUDENT() {
+    private static Subject findSubId(String code) {
+        for (Subject subject : subjects) {
+            if (subject.getCode().equals(code)) {
+                return subject;
+            }
+        }
+        return null;
+    }
+
+    private static void remStudent() {
         scanner.nextLine();
         System.out.print("Enter Student ID to unenroll: ");
-        String STUDENT_ID = scanner.nextLine();
-        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
-        if (STUDENT == null) {
-            System.out.println("Student with ID " + STUDENT_ID + " not found.");
+        String studentId = scanner.nextLine();
+        Student student = findStId(studentId);
+        if (student == null) {
+            System.out.println("Student with ID " + studentId + " not found.");
             return;
         }
-        STUDENTS.remove(STUDENT);
-        System.out.println("Student " + STUDENT_ID + " unenrolled.");
+        students.remove(student);
+        System.out.println("Student " + studentId + " unenrolled.");
     }
 
-    private static void REM_INSTRUCTOR() {
+    private static void remInstructor() {
         scanner.nextLine();
         System.out.print("\nEnter Instructor ID to remove: ");
-        String INSTRUCTOR_ID = scanner.nextLine();
-        INSTRUCTOR INSTRUCTOR = FIND_INS_ID(INSTRUCTOR_ID);
-        if (INSTRUCTOR == null) {
-            System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
+        String instructorId = scanner.nextLine();
+        Instructor instructor = findInsId(instructorId);
+        if (instructor == null) {
+            System.out.println("Instructor with ID " + instructorId + " not found.");
             return;
         }
-        INSTRUCTORS.remove(INSTRUCTOR);
-        System.out.println("Instructor " + INSTRUCTOR_ID + " removed.");
+        instructors.remove(instructor);
+        System.out.println("Instructor " + instructorId + " removed.");
     }
 
-    private static void REM_SUBJECT() {
+    private static void remSubject() {
         scanner.nextLine();
         System.out.print("\nEnter Subject Code to remove: ");
-        String SUBJECT_ID = scanner.nextLine();
-        SUBJECT SUBJECT = FIND_SUB_ID(SUBJECT_ID);
-        if (SUBJECT == null) {
-            System.out.println("Subject with Code " + SUBJECT_ID + " not found.");
+        String subjectId = scanner.nextLine();
+        Subject subject = findSubId(subjectId);
+        if (subject == null) {
+            System.out.println("Subject with Code " + subjectId + " not found.");
             return;
         }
-        SUBJECTS.remove(SUBJECT);
-        System.out.println("SUBJECT " + SUBJECT_ID + " removed.");
+        subjects.remove(subject);
+        System.out.println("Subject " + subjectId + " removed.");
     }
 
-    private static void EDIT_INSTRUCTOR_DETAILS() {
+    private static void editInstructorDetails() {
         scanner.nextLine();
         System.out.print("Enter Instructor ID to edit: ");
-        String INSTRUCTOR_ID = scanner.nextLine();
-        INSTRUCTOR instructor = FIND_INS_ID(INSTRUCTOR_ID);
+        String instructorId = scanner.nextLine();
+        Instructor instructor = findInsId(instructorId);
         if (instructor == null) {
-            System.out.println("Instructor with ID " + INSTRUCTOR_ID + " not found.");
+            System.out.println("Instructor with ID " + instructorId + " not found.");
             return;
         }
 
@@ -500,27 +517,27 @@ public class LAMBDA {
             case 1:
                 System.out.print("Enter new last name: ");
                 String newLastName = scanner.nextLine().trim();
-                instructor.SET_LASTNAME(newLastName);
+                instructor.setLastName(newLastName);
                 break;
             case 2:
                 System.out.print("Enter new first name: ");
                 String newFirstName = scanner.nextLine().trim();
-                instructor.SET_FIRSTNAME(newFirstName);
+                instructor.setFirstName(newFirstName);
                 break;
             case 3:
                 System.out.print("Enter new middle name: ");
                 String newMiddleName = scanner.nextLine().trim();
-                instructor.SET_MIDDLENAME(newMiddleName);
+                instructor.setMiddleName(newMiddleName);
                 break;
             case 4:
                 System.out.print("Enter new address: ");
                 String newAddress = scanner.nextLine().trim();
-                instructor.SET_ADDRESS(newAddress);
+                instructor.setAddress(newAddress);
                 break;
             case 5:
                 System.out.print("Enter new age: ");
                 int newAge = scanner.nextInt();
-                instructor.SET_AGE(newAge);
+                instructor.setAge(newAge);
                 break;
             default:
                 System.out.println("Invalid choice.");
@@ -530,13 +547,13 @@ public class LAMBDA {
         System.out.println("Instructor details updated successfully.");
     }
 
-    private static void EDIT_STUDENT_DETAILS() {
+    private static void editStudentDetails() {
         scanner.nextLine();
         System.out.print("Enter Student ID to edit: ");
-        String STUDENT_ID = scanner.nextLine();
-        STUDENT STUDENT = FIND_ST_ID(STUDENT_ID);
-        if (STUDENT == null) {
-            System.out.println("Student with ID " + STUDENT_ID + " not found.");
+        String studentId = scanner.nextLine();
+        Student student = findStId(studentId);
+        if (student == null) {
+            System.out.println("Student with ID " + studentId + " not found.");
             return;
         }
 
@@ -553,27 +570,27 @@ public class LAMBDA {
             case 1:
                 System.out.print("Enter new last name: ");
                 String newLastName = scanner.nextLine().trim();
-                STUDENT.SET_LASTNAME(newLastName);
+                student.setLastName(newLastName);
                 break;
             case 2:
                 System.out.print("Enter new first name: ");
                 String newFirstName = scanner.nextLine().trim();
-                STUDENT.SET_FIRSTNAME(newFirstName);
+                student.setFirstName(newFirstName);
                 break;
             case 3:
                 System.out.print("Enter new middle name: ");
                 String newMiddleName = scanner.nextLine().trim();
-                STUDENT.SET_MIDDLENAME(newMiddleName);
+                student.setMiddleName(newMiddleName);
                 break;
             case 4:
                 System.out.print("Enter new address: ");
                 String newAddress = scanner.nextLine().trim();
-                STUDENT.SET_ADDRESS(newAddress);
+                student.setAddress(newAddress);
                 break;
             case 5:
                 System.out.print("Enter new age: ");
                 int newAge = scanner.nextInt();
-                STUDENT.SET_AGE(newAge);
+                student.setAge(newAge);
                 break;
             default:
                 System.out.println("Invalid choice.");

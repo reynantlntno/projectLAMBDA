@@ -2,104 +2,102 @@
 // put notes here
 
 class Entity {
-    private String ID;
-    private String LAST_NAME;
-    private String FIRST_NAME;
-    private String MIDDLE_NAME;
-    private String ADDRESS;
-    private String EMAIL_ADDRESS;
-    private String CONTACT_NUMBER;
-    private int YEAR;
-    private int AGE;
+    private String id;
+    private String lastName;
+    private String firstName;
+    private String middleName;
+    private String address;
+    private String emailAddress;
+    private String contactNumber;
+    private int year;
+    private int age;
 
-
-    public Entity(String ID, String LAST_NAME, String FIRST_NAME, String MIDDLE_NAME, String ADDRESS, String EMAIL_ADDRESS, String CONTACT_NUMBER, int YEAR, int AGE) {
-        this.ID = ID;
-        this.LAST_NAME = LAST_NAME;
-        this.FIRST_NAME = FIRST_NAME;
-        this.MIDDLE_NAME = MIDDLE_NAME;
-        this.ADDRESS = ADDRESS;
-        this.EMAIL_ADDRESS = EMAIL_ADDRESS;
-        this.CONTACT_NUMBER = CONTACT_NUMBER;
-        this.YEAR = YEAR;
-        this.AGE = AGE;
-
+    public Entity(String id, String lastName, String firstName, String middleName, String address, String emailAddress, String contactNumber, int year, int age) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.address = address;
+        this.emailAddress = emailAddress;
+        this.contactNumber = contactNumber;
+        this.year = year;
+        this.age = age;
     }
 
-    public String GET_ID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void SET_ID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String GET_LASTNAME() {
-        return LAST_NAME;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void SET_LASTNAME(String LAST_NAME) {
-        this.LAST_NAME = LAST_NAME;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String GET_FIRSTNAME() {
-        return FIRST_NAME;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void SET_FIRSTNAME(String FIRST_NAME) {
-        this.FIRST_NAME = FIRST_NAME;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String GET_MIDDLENAME() {
-        return MIDDLE_NAME;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void SET_MIDDLENAME(String MIDDLE_NAME) {
-        this.MIDDLE_NAME = MIDDLE_NAME;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public String GET_ADDRESS() {
-        return ADDRESS;
+    public String getAddress() {
+        return address;
     }
 
-    public void SET_ADDRESS(String ADDRESS) {
-        this.ADDRESS = ADDRESS;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String GET_EMAILADD() {
-        return ADDRESS;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void SET_EMAILADD(String EMAIL_ADDRESS) {
-        this.EMAIL_ADDRESS = EMAIL_ADDRESS;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public String GET_CONTACTNUM() {
-        return CONTACT_NUMBER;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void SET_CONTACTNUM(String CONTACT_NUMBER) {
-        this.CONTACT_NUMBER = CONTACT_NUMBER;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public int GET_YEAR() {
-        return YEAR;
+    public int getYear() {
+        return year;
     }
 
-    public void SET_YEAR(int YEAR) {
-        this.YEAR = YEAR;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public int GET_AGE() {
-        return AGE;
+    public int getAge() {
+        return age;
     }
 
-    public void SET_AGE(int AGE) {
-        this.AGE = AGE;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
-        return "ID: " + ID + "\nName: " + FIRST_NAME + " " + LAST_NAME + "\nAddress: " + ADDRESS + "\nEmail Address: " + EMAIL_ADDRESS + "\nContact Number: " + CONTACT_NUMBER + "\nYear Start: 20" + YEAR + "\nAge: " + AGE;
+        return "ID: " + id + "\nName: " + firstName + " " + lastName + "\nAddress: " + address + "\nEmail Address: " + emailAddress + "\nContact Number: " + contactNumber + "\nYear Start: 20" + year + "\nAge: " + age;
     }
 }
