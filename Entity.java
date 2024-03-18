@@ -6,7 +6,7 @@
 */
 
 // Entity.java
-// put notes here
+// put notes here (bug notes o kahit ano)
 
 
 class Entity {

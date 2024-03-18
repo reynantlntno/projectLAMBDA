@@ -1,12 +1,13 @@
-/* Fuertez, Balce Vince, Quila
+/* 
+   Fuertez, Balce Vince, Quila
    BSIS 1A
    IS 102 Computer Programming 2
    IS 103 Data Structures and Algorithms
-
 */
 
 // LAMBDA.java
-// Put notes here (bug notes kung meron)
+// put notes here (bug notes o kahit ano)
+
 
 import java.util.*;
 
@@ -22,57 +23,57 @@ public class LAMBDA {
     private static String username;
 
     public static void main(String[] args) {
-        showSplash();
-        username = promptLogin();
-        lambdaCaptcha();
-        headerUmps();
+        showSplash(); // Display the LAMBDA splash screen
+        username = promptLogin(); // Prompt for username
+        lambdaCaptcha(); // simple math CAPTCHA
+        headerUmps(); // Display header
         while (true) {
-            showMenu();
-            String choice = getChoice();
+            showMenu(); // Display  main menu
+            String choice = getChoice(); // Get user choice
             switch (choice) {
                 case "1":
-                    addInstructor();
+                    addInstructor(); // Add new instructor
                     break;
                 case "2":
-                    addStudent();
+                    addStudent(); // Add new student
                     break;
                 case "3":
-                    addSubject();
+                    addSubject(); // Add new subject
                     break;
                 case "4":
-                    assignSubToIns();
+                    assignSubToIns(); // Assign subject to an instructor
                     break;
                 case "5":
-                    addSubToSt();
+                    addSubToSt(); // Add subject to a student
                     break;
                 case "6":
-                    showStInfo();
+                    showStInfo(); // Display student info and subjects
                     break;
                 case "7":
-                    showInsInfo();
+                    showInsInfo(); // Display instructor info and subjects
                     break;
                 case "8":
-                    editInstructorDetails();
+                    editInstructorDetails(); // Edit instructor details
                     break;
                 case "9":
-                    editStudentDetails();
+                    editStudentDetails(); // Edit student details
                     break;
                 case "10":
-                    remStudent();
+                    remStudent(); // Remove a student
                     break;
                 case "11":
-                    remInstructor();
+                    remInstructor(); // Remove an instructor
                     break;
                 case "12":
-                    remSubject();
+                    remSubject(); // Remove a subject
                     break;
                 case "CLEAR":
-                    clearScreen();
-                    showSplash();
+                    clearScreen(); // Clear the console screen
+                    showSplash(); // Display the splash screen again
                     break;
                 case "EXIT":
-                    clearScreen();
-                    System.out.println("Exiting Lambda...");
+                    clearScreen(); // Clear the console screen
+                    System.out.println("Exiting Lambda..."); // Exit the program
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice, please try again.");
@@ -80,11 +81,13 @@ public class LAMBDA {
         }
     }
 
+    // Clear the console screen
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+    // Display LAMBDA splash screen
     private static void showSplash() {
         double lambdaVers = 1.0;
         String lambdaStat = "ALPHA";
@@ -92,12 +95,13 @@ public class LAMBDA {
         System.out.print("\n[" + splashTxt +  "     UMPS     " + lambdaStat  + " ]\n");
     }
 
+    // Prompt for username
     private static String promptLogin() {
         System.out.print("Please enter your username for record purposes: ");
         return scanner.nextLine();
-        
     }
 
+    // a simple math CAPTCHA
     private static void lambdaCaptcha() {
         int attempts = 0;
         while (attempts < 2) {
@@ -126,12 +130,13 @@ public class LAMBDA {
         }
     }
 
+    // Display header
     private static void headerUmps() {
         System.out.print("Welcome to University Management Profiling System!");
     }
 
+    // Display main menu
     private static void showMenu() {
-    
         System.out.print("\nLogged in as: " + username);
 
         System.out.print("\n==============================================================\n");
@@ -155,6 +160,7 @@ public class LAMBDA {
         System.out.print("Enter your choice: ");
     }
 
+    // Get user choice
     private static String getChoice() {
         while (!scanner.hasNext()) {
             System.out.println("Invalid input! Please enter a number.");
