@@ -514,7 +514,7 @@ public class LAMBDA {
             System.out.println("Instructor with ID " + instructorId + " not found.");
             return;
         }
-
+    
         System.out.println("Choose which attribute to edit:");
         System.out.println("1     | Last Name");
         System.out.println("2     | First Name");
@@ -524,41 +524,58 @@ public class LAMBDA {
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
-
+    
         switch (choice) {
             case 1:
+                // Edit last name
                 System.out.print("Enter new last name: ");
                 String newLastName = scanner.nextLine().trim();
                 instructor.setLastName(newLastName);
                 break;
             case 2:
+                // Edit first name
                 System.out.print("Enter new first name: ");
                 String newFirstName = scanner.nextLine().trim();
                 instructor.setFirstName(newFirstName);
                 break;
             case 3:
+                // Edit middle name
                 System.out.print("Enter new middle name: ");
                 String newMiddleName = scanner.nextLine().trim();
                 instructor.setMiddleName(newMiddleName);
                 break;
             case 4:
+                // Edit address
                 System.out.print("Enter new address: ");
                 String newAddress = scanner.nextLine().trim();
                 instructor.setAddress(newAddress);
                 break;
             case 5:
-                System.out.print("Enter new age: ");
-                int newAge = scanner.nextInt();
+                // Edit age
+                int newAge;
+                do {
+                    System.out.print("Enter new age (>= " + MIN_INSTRUCTOR_AGE + "): ");
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Invalid Age! Please enter a valid Age.");
+                        scanner.nextLine();
+                    }
+                    newAge = scanner.nextInt();
+                    if (newAge > MAX_INSTRUCTOR_AGE) {
+                        System.out.println("Warning: Maximum allowable age is " + MAX_INSTRUCTOR_AGE + ".");
+                    } else if (newAge < MIN_INSTRUCTOR_AGE) {
+                        System.out.println("Does not meet the minimum age requirement.");
+                    }
+                } while (newAge < MIN_INSTRUCTOR_AGE || newAge > MAX_INSTRUCTOR_AGE);
                 instructor.setAge(newAge);
                 break;
             default:
                 System.out.println("Invalid choice.");
                 return;
         }
-
+    
         System.out.println("Instructor details updated successfully.");
     }
-
+    
     private static void editStudentDetails() {
         scanner.nextLine();
         System.out.print("Enter Student ID to edit: ");
@@ -568,7 +585,7 @@ public class LAMBDA {
             System.out.println("Student with ID " + studentId + " not found.");
             return;
         }
-
+    
         System.out.println("Choose which attribute to edit:");
         System.out.println("1     | Last Name");
         System.out.println("2     | First Name");
@@ -577,38 +594,56 @@ public class LAMBDA {
         System.out.println("5     | Age");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
+    
         switch (choice) {
             case 1:
+                // Edit last name
                 System.out.print("Enter new last name: ");
                 String newLastName = scanner.nextLine().trim();
                 student.setLastName(newLastName);
                 break;
             case 2:
+                // Edit first name
                 System.out.print("Enter new first name: ");
                 String newFirstName = scanner.nextLine().trim();
                 student.setFirstName(newFirstName);
                 break;
             case 3:
+                // Edit middle name
                 System.out.print("Enter new middle name: ");
                 String newMiddleName = scanner.nextLine().trim();
                 student.setMiddleName(newMiddleName);
                 break;
             case 4:
+                // Edit address
                 System.out.print("Enter new address: ");
                 String newAddress = scanner.nextLine().trim();
                 student.setAddress(newAddress);
                 break;
             case 5:
-                System.out.print("Enter new age: ");
-                int newAge = scanner.nextInt();
+                // Edit age
+                int newAge;
+                do {
+                    System.out.print("Enter new age (>= " + MIN_STUDENT_AGE + "): ");
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Invalid Age! Please enter a valid Age.");
+                        scanner.nextLine();
+                    }
+                    newAge = scanner.nextInt();
+                    if (newAge > MAX_STUDENT_AGE) {
+                        System.out.println("Warning: Maximum allowable age is " + MAX_STUDENT_AGE + ".");
+                    } else if (newAge < MIN_STUDENT_AGE) {
+                        System.out.println("Does not meet the minimum age requirement.");
+                    }
+                } while (newAge < MIN_STUDENT_AGE || newAge > MAX_STUDENT_AGE);
                 student.setAge(newAge);
                 break;
             default:
                 System.out.println("Invalid choice.");
                 return;
         }
-
-        System.out.println("Instructor details updated successfully.");
+    
+        System.out.println("Student details updated successfully.");
     }
-}
+}    
