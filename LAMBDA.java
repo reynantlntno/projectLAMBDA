@@ -259,9 +259,9 @@ public class LAMBDA {
     }
 
     private static void addStudent() {
-           System.out.print("\n==============================================================");
+           System.out.print("\n==============================================================\n");
         System.out.println("Student Add: Please Correctly Type the Details!");
-           System.out.print("\n==============================================================");
+           System.out.print("==============================================================\n");
 
         try {
             scanner.nextLine();
@@ -337,9 +337,9 @@ public class LAMBDA {
     }
 
     private static void addSubject() {
-        System.out.print("\n==============================================================");
+        System.out.print("\n==============================================================\n");
         System.out.println("Subject Add: Please Correctly Type the Details!");
-        System.out.print("\n==============================================================");
+        System.out.print("==============================================================\n");
         scanner.nextLine();
         System.out.print("Enter Subject Title: ");
         String title = scanner.nextLine();
