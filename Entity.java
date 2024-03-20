@@ -108,6 +108,6 @@ class Entity {
 
     @Override
     public String toString() {
-        return "ID: " + id + "\nName: " + firstName + " " + lastName + "\nAddress: " + address + "\nEmail Address: " + emailAddress + "\nContact Number: " + contactNumber + "\nYear Start: 20" + year + "\nAge: " + age;
+        return "ID: " + id + "\nName: " + firstName + " " + middleName + " " + lastName + "\nAddress: " + address + "\nEmail Address: " + emailAddress + "\nContact Number: " + contactNumber + "\nYear Start: 20" + year + "\nAge: " + age;
     }
 }
