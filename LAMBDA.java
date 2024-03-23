@@ -89,7 +89,7 @@ public class LAMBDA {
 
     // Display LAMBDA splash screen
     private static void showSplash() {
-        double lambdaVers = 1.0;
+        double lambdaVers = 1.1;
         String lambdaStat = "ALPHA";
         String splashTxt = " LAMBDA " + lambdaVers + " ";
         System.out.print("\n[" + splashTxt +  "     UMPS     " + lambdaStat  + " ]\n");
@@ -98,7 +98,15 @@ public class LAMBDA {
     // Prompt for username
     private static String promptLogin() {
         System.out.print("Please enter your username for record purposes: ");
-        return scanner.nextLine();
+
+        String username = scanner.nextLine();
+        
+        if (username.length() > 30) {
+            System.out.println("Error: Username exceeds 30 characters.");
+            return promptLogin();
+        } else {
+            return username;
+        }
     }
 
     // a simple math CAPTCHA
@@ -520,7 +528,9 @@ public class LAMBDA {
         System.out.println("2     | First Name");
         System.out.println("3     | Middle Name");
         System.out.println("4     | Address");
-        System.out.println("5     | Age");
+        System.out.println("5     | Email Address");
+        System.out.println("6     | Contact Number");
+        System.out.println("7     | Age");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -551,6 +561,16 @@ public class LAMBDA {
                 instructor.setAddress(newAddress);
                 break;
             case 5:
+                System.out.print("Enter new email address: ");
+                String newEmailAddress = scanner.nextLine().trim();
+                instructor.setEmailAddress(newEmailAddress);
+                break;
+            case 6:
+                System.out.print("Enter new contact number: ");
+                String newContactNumber = scanner.nextLine().trim();
+                instructor.setContactNumber(newContactNumber);
+                break;
+            case 7:
                 // Edit age
                 int newAge;
                 do {
@@ -591,7 +611,9 @@ public class LAMBDA {
         System.out.println("2     | First Name");
         System.out.println("3     | Middle Name");
         System.out.println("4     | Address");
-        System.out.println("5     | Age");
+        System.out.println("5     | Email Address");
+        System.out.println("6     | Contact Number");
+        System.out.println("7     | Age");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -622,6 +644,16 @@ public class LAMBDA {
                 student.setAddress(newAddress);
                 break;
             case 5:
+                System.out.print("Enter new email address: ");
+                String newEmailAddress = scanner.nextLine().trim();
+                student.setEmailAddress(newEmailAddress);
+                break;
+            case 6:
+                System.out.print("Enter new contact number: ");
+                String newContactNumber = scanner.nextLine().trim();
+                student.setContactNumber(newContactNumber);
+                break;
+            case 7:
                 // Edit age
                 int newAge;
                 do {
